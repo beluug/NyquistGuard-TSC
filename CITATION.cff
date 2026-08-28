@@ -11,6 +11,8 @@ authors:
     given-names: HanJia
     orcid: "https://orcid.org/0009-0000-8009-7137"
 license: MIT
+repository-code: "https://github.com/beluug/NyquistGuard-TSC"
+url: "https://github.com/beluug/NyquistGuard-TSC"
 keywords:
   - time-series classification
   - sampling-rate shift
@@ -19,4 +21,3 @@ keywords:
 abstract: >-
   Rate-explicit dual-path time-series classification for discrete unseen
   sampling-rate shifts when sampling-rate metadata are available at inference.
-
