@@ -58,6 +58,7 @@ is available, and cite every original dataset according to its repository terms.
 code in this package is released under the MIT License. Dataset licences remain
 separate and are not relicensed by this repository.
 
-Public repository: https://github.com/beluug/NyquistGuard-TSC  
-Release tag: `v1.0.0`  
-Zenodo DOI: not yet available; add it here and in `CITATION.cff` after archival.
+Public repository: https://github.com/beluug/NyquistGuard-TSC
+Release tag: `v1.0.1`
+Release commit: `1f0dc668096b389209b9d30dccc75c58a60075e3`
+Zenodo DOI: https://doi.org/10.5281/zenodo.22148876
