@@ -1,0 +1,62 @@
+stage: v5_dual_path_development
+protocol_version: v5_rate_conditioned_dual_path_design_v1
+status: design_frozen_not_trained
+development_only: true
+automatic_formal_run_allowed: false
+independent_confirmation_claim_allowed: false
+
+data_boundary:
+  allowed:
+    - synthetic_multichannel_mechanism_data
+    - basicmotions_uea_train_validation
+    - pamap2_uci_train_validation
+  forbidden:
+    - all_test_splits
+    - v4_confirmation_test_metrics
+    - v4_confirmation_test_predictions
+  note: the four V4 confirmation datasets are not eligible as untouched V5 confirmation data
+
+candidate:
+  name: v5_dual_path
+  base: v4_1_residual_gate
+  module: src/nyquistguard/research/v5_dual_path.py
+  class: DualPathNyquistGuardTSC
+  signed_spatial_bypass: true
+  spatial_channels: 24
+  per_case_channel_standardization: true
+  input_standardization_epsilon: 0.00001
+  temporal_statistics: [mean, standard_deviation, maximum]
+  fusion_controller_inputs: [log2_relative_sampling_rate, mean_analytic_gate, minimum_analytic_gate]
+  initial_physical_fusion_weight: 0.5
+  initial_cross_path_residual: 0.0
+
+screen_sequence:
+  - unit_forward_backward_and_padding_tests
+  - synthetic_signed_spatial_mechanism_smoke
+  - paired_validation_only_micro_screen
+  - paired_validation_only_multiseed_stability
+  - freeze_v5
+  - select_new_untouched_confirmation_datasets
+
+micro_screen:
+  datasets: [basicmotions_uea, pamap2_uci]
+  control: v4_1_residual_gate
+  seed: 17
+  epochs: 30
+  early_stopping_patience: 10
+  maximum_wall_time_seconds: 600
+  base_config: configs/experiments/pilot.yaml
+  validation_rate_ratios: [1.0, 0.9, 0.6, 0.4, 0.3]
+  checkpoint_selection:
+    metric: balanced_full_unseen_macro_f1
+    full_rate_weight: 0.5
+    mean_unseen_rate_weight: 0.5
+
+development_gates:
+  require_synthetic_signed_spatial_smoke_pass: true
+  minimum_average_unseen_macro_f1_delta_vs_v4_1: 0.01
+  maximum_single_dataset_unseen_macro_f1_drop: 0.01
+  maximum_average_full_rate_macro_f1_drop: 0.01
+  require_no_constant_prediction_validation_pattern: true
+  require_finite_gradients_in_both_paths: true
+  require_selected_reliability_nonworse_than_confidence: true

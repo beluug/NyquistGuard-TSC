@@ -1,0 +1,43 @@
+stage: v3_continuous_rate_development
+protocol_version: v3_continuous_rate_development_v1
+development_only: true
+dataset: pamap2_uci
+seed: 42
+source_failed_confirmation_report: reports/v3_multiseed_confirmation_report.json
+epochs: 30
+wall_time_budget_seconds: 420
+base_config: configs/experiments/pilot.yaml
+reliability_config: configs/experiments/v3_anchored_reliability.yaml
+
+# Frozen before training. This preserves the original one-in-three identity
+# secondary view while replacing two fixed low-rate points with continuum coverage.
+secondary_rate_sampling:
+  mode: identity_plus_continuous_uniform
+  period_batches: 3
+  identity_slots: 1
+  uniform_min: 0.3
+  uniform_max: 0.75
+
+checkpoint_selection:
+  split: validation
+  rate_ratios: [1.0, 0.9, 0.6, 0.4, 0.3]
+  metric: balanced_full_unseen_macro_f1
+  full_rate_weight: 0.5
+  mean_unseen_rate_weight: 0.5
+  early_stopping_patience: 7
+
+core:
+  use_nyquist_gate: true
+  use_selective_head: false
+  lambda_cbe: 0.0
+  lambda_selective: 0.0
+  lambda_monotonicity: 0.0
+  keep_filter_regularization: true
+
+development_gates:
+  minimum_unseen_macro_f1_delta_vs_v1: -0.02
+  minimum_unseen_macro_f1_improvement_vs_v3_5_failed_run: 0.02
+  minimum_full_rate_macro_f1_delta_vs_v1: -0.01
+  require_guarded_aurc_nonworse_vs_confidence: true
+  maximum_selected_aurc_delta_vs_v1: 0.0
+  maximum_target_risk_delta_vs_confidence: 0.0

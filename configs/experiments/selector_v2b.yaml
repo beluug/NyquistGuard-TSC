@@ -1,0 +1,18 @@
+stage: selector_v2b
+protocol_version: selector_posthoc_dev_v1
+development_only: true
+datasets: [basicmotions_uea, pamap2_uci]
+seed: 17
+base_config: configs/experiments/pilot.yaml
+epochs: 30
+learning_rate: 0.001
+weight_decay: 0.0001
+lambda_monotonicity: 0.1
+wall_time_budget_seconds: 300
+target: detached_true_class_probability
+trainable_parameters: selective_head_only
+development_gates:
+  require_exact_classification_preservation: true
+  require_both_validation_aurc_improved_vs_v1: true
+  require_both_validation_aurc_no_worse_than_softmax: true
+

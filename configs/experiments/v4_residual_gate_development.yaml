@@ -1,0 +1,43 @@
+stage: v4_residual_gate_development
+protocol_version: v4_1_residual_gate_adaptive_development_v1
+development_only: true
+adapted_after_v4_observe_only_validation_screen: true
+adaptation_reason: retain useful hard-gate inductive bias while preventing irreversible band erasure
+independent_confirmation_claim_allowed: false
+
+data_boundary:
+  allowed: [existing_train_splits, existing_validation_splits]
+  forbidden: [existing_test_splits, full_metrics, full_predictions]
+  minimum_new_confirmation_datasets: 4
+
+micro_screen:
+  datasets: [basicmotions_uea, pamap2_uci]
+  seed: 17
+  epochs: 30
+  early_stopping_patience: 10
+  wall_time_budget_seconds: 420
+  base_config: configs/experiments/pilot.yaml
+  candidate: v4_1_residual_gate
+  initial_gate_floor: 0.5
+  paired_shared_parameter_initialization_with_v4_0_control: true
+  train_rate_schedule:
+    mode: identity_plus_continuous_uniform
+    period_batches: 3
+    identity_slots: 1
+    uniform_min: 0.3
+    uniform_max: 0.75
+  validation_rate_ratios: [1.0, 0.9, 0.6, 0.4, 0.3]
+  checkpoint_selection:
+    metric: balanced_full_unseen_macro_f1
+    full_rate_weight: 0.5
+    mean_unseen_rate_weight: 0.5
+  reliability_controller:
+    candidate: confidence_times_relative_effective_gate_mass
+    fallback: max_softmax_confidence
+    activation_rule: candidate_pooled_validation_aurc_not_greater_than_fallback
+  development_gates:
+    minimum_average_unseen_macro_f1_delta_vs_hard_gate: 0.02
+    maximum_single_dataset_unseen_macro_f1_drop: 0.01
+    maximum_average_full_rate_macro_f1_drop: 0.01
+    require_selected_reliability_nonworse_than_confidence: true
+    require_rate_sufficiency_drop_both_datasets: true

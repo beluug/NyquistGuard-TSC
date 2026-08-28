@@ -1,0 +1,75 @@
+stage: full
+protocol_version: full_v1_v3_10_confirmatory
+manual_start_required: true
+resume_default: true
+source_confirmation_report: reports/v3_10_independent_confirmation_report.json
+base_config: configs/experiments/pilot.yaml
+reliability_config: configs/experiments/v3_anchored_reliability.yaml
+
+datasets:
+  - basicmotions_uea
+  - epilepsy_uea
+  - pamap2_uci
+  - mhealth_uci
+  - hapt_uci
+  - daily_sports_uci
+  - hydraulic_uci
+  - sleep_edfx_physionet
+  - eegmmi_physionet
+  - mitbih_arrhythmia_physionet
+
+# Frozen before Full results.  Main model, matched legacy control, four
+# external/architectural baselines and one mechanism ablation.
+methods:
+  - v3_10
+  - v1_nyquistguard
+  - fixed_rate_tcn
+  - multirate_tcn
+  - minirocket
+  - multirocket
+  - v3_10_no_nyquist_gate
+seeds: [17, 42, 2026]
+
+epochs: 30
+secondary_rate_sampling:
+  mode: identity_plus_continuous_uniform
+  period_batches: 3
+  identity_slots: 1
+  uniform_min: 0.3
+  uniform_max: 0.75
+checkpoint_selection:
+  split: validation
+  rate_ratios: [1.0, 0.9, 0.6, 0.4, 0.3]
+  metric: balanced_full_unseen_macro_f1
+  full_rate_weight: 0.5
+  mean_unseen_rate_weight: 0.5
+  early_stopping_patience: 7
+
+rate_protocol:
+  train_reference_ratios: [1.0, 0.75, 0.5]
+  test_ratios: [1.0, 0.9, 0.6, 0.4, 0.3]
+  unseen_ratios: [0.9, 0.6, 0.4, 0.3]
+
+classical_baselines:
+  n_kernels: 10000
+  n_jobs: 4
+  train_on_reference_rate_only: true
+
+reliability_controller:
+  minimum_absolute_validation_aurc_gain: 0.0
+  target_coverage: 0.8
+
+statistics:
+  primary_metric: mean_unseen_macro_f1
+  paired_unit: dataset_mean_over_three_seeds
+  test: two_sided_wilcoxon_signed_rank
+  multiplicity: holm
+  alpha: 0.05
+  bootstrap_resamples: 10000
+  bootstrap_seed: 17042
+
+scientific_boundaries:
+  validation_only_for_checkpoint_and_reliability_selection: true
+  test_used_once_for_frozen_full_reporting: true
+  result_dependent_seed_or_dataset_exclusion: false
+  automatic_followup_experiment: false

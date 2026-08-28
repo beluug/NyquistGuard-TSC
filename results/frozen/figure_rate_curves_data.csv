@@ -1,0 +1,41 @@
+﻿method_id,method,rate_ratio,macro_f1,aggregation
+v5_1_safe_dual_path,NyquistGuard-TSC V5.1,1.0,0.769106177,equal-weight mean over 10 datasets and 3 seeds
+v5_1_safe_dual_path,NyquistGuard-TSC V5.1,0.9,0.770443332,equal-weight mean over 10 datasets and 3 seeds
+v5_1_safe_dual_path,NyquistGuard-TSC V5.1,0.6,0.771633401,equal-weight mean over 10 datasets and 3 seeds
+v5_1_safe_dual_path,NyquistGuard-TSC V5.1,0.4,0.759594890,equal-weight mean over 10 datasets and 3 seeds
+v5_1_safe_dual_path,NyquistGuard-TSC V5.1,0.3,0.731945630,equal-weight mean over 10 datasets and 3 seeds
+minirocket,"MiniROCKET (10,000 kernels)",1.0,0.769637256,equal-weight mean over 10 datasets and 3 seeds
+minirocket,"MiniROCKET (10,000 kernels)",0.9,0.764325496,equal-weight mean over 10 datasets and 3 seeds
+minirocket,"MiniROCKET (10,000 kernels)",0.6,0.752180593,equal-weight mean over 10 datasets and 3 seeds
+minirocket,"MiniROCKET (10,000 kernels)",0.4,0.710094391,equal-weight mean over 10 datasets and 3 seeds
+minirocket,"MiniROCKET (10,000 kernels)",0.3,0.632535317,equal-weight mean over 10 datasets and 3 seeds
+multirocket,"MultiROCKET (1,000 kernels)",1.0,0.788707108,equal-weight mean over 10 datasets and 3 seeds
+multirocket,"MultiROCKET (1,000 kernels)",0.9,0.749378754,equal-weight mean over 10 datasets and 3 seeds
+multirocket,"MultiROCKET (1,000 kernels)",0.6,0.701112450,equal-weight mean over 10 datasets and 3 seeds
+multirocket,"MultiROCKET (1,000 kernels)",0.4,0.574050280,equal-weight mean over 10 datasets and 3 seeds
+multirocket,"MultiROCKET (1,000 kernels)",0.3,0.451906025,equal-weight mean over 10 datasets and 3 seeds
+multirate_tcn,Multirate TCN,1.0,0.665384205,equal-weight mean over 10 datasets and 3 seeds
+multirate_tcn,Multirate TCN,0.9,0.660395866,equal-weight mean over 10 datasets and 3 seeds
+multirate_tcn,Multirate TCN,0.6,0.651072696,equal-weight mean over 10 datasets and 3 seeds
+multirate_tcn,Multirate TCN,0.4,0.595542058,equal-weight mean over 10 datasets and 3 seeds
+multirate_tcn,Multirate TCN,0.3,0.524336625,equal-weight mean over 10 datasets and 3 seeds
+v3_10_no_nyquist_gate,v3.10 without Nyquist gate,1.0,0.638209695,equal-weight mean over 10 datasets and 3 seeds
+v3_10_no_nyquist_gate,v3.10 without Nyquist gate,0.9,0.630797102,equal-weight mean over 10 datasets and 3 seeds
+v3_10_no_nyquist_gate,v3.10 without Nyquist gate,0.6,0.635957303,equal-weight mean over 10 datasets and 3 seeds
+v3_10_no_nyquist_gate,v3.10 without Nyquist gate,0.4,0.597028562,equal-weight mean over 10 datasets and 3 seeds
+v3_10_no_nyquist_gate,v3.10 without Nyquist gate,0.3,0.552928016,equal-weight mean over 10 datasets and 3 seeds
+fixed_rate_tcn,Fixed-rate TCN,1.0,0.662974061,equal-weight mean over 10 datasets and 3 seeds
+fixed_rate_tcn,Fixed-rate TCN,0.9,0.655979561,equal-weight mean over 10 datasets and 3 seeds
+fixed_rate_tcn,Fixed-rate TCN,0.6,0.613726562,equal-weight mean over 10 datasets and 3 seeds
+fixed_rate_tcn,Fixed-rate TCN,0.4,0.535984319,equal-weight mean over 10 datasets and 3 seeds
+fixed_rate_tcn,Fixed-rate TCN,0.3,0.484386421,equal-weight mean over 10 datasets and 3 seeds
+v3_10,NyquistGuard-TSC v3.10,1.0,0.633258017,equal-weight mean over 10 datasets and 3 seeds
+v3_10,NyquistGuard-TSC v3.10,0.9,0.621323614,equal-weight mean over 10 datasets and 3 seeds
+v3_10,NyquistGuard-TSC v3.10,0.6,0.617005309,equal-weight mean over 10 datasets and 3 seeds
+v3_10,NyquistGuard-TSC v3.10,0.4,0.556506671,equal-weight mean over 10 datasets and 3 seeds
+v3_10,NyquistGuard-TSC v3.10,0.3,0.473506266,equal-weight mean over 10 datasets and 3 seeds
+v1_nyquistguard,NyquistGuard v1,1.0,0.632584245,equal-weight mean over 10 datasets and 3 seeds
+v1_nyquistguard,NyquistGuard v1,0.9,0.627060374,equal-weight mean over 10 datasets and 3 seeds
+v1_nyquistguard,NyquistGuard v1,0.6,0.599410230,equal-weight mean over 10 datasets and 3 seeds
+v1_nyquistguard,NyquistGuard v1,0.4,0.476488191,equal-weight mean over 10 datasets and 3 seeds
+v1_nyquistguard,NyquistGuard v1,0.3,0.362553277,equal-weight mean over 10 datasets and 3 seeds

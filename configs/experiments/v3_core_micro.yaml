@@ -1,0 +1,26 @@
+stage: v3_core_micro
+protocol_version: v3_core_micro_dev_v1
+development_only: true
+datasets: [basicmotions_uea, pamap2_uci]
+seed: 17
+epochs: 18
+wall_time_budget_seconds: 540
+base_config: configs/experiments/pilot.yaml
+reliability_config: configs/experiments/v3_anchored_reliability.yaml
+
+core:
+  use_nyquist_gate: true
+  use_selective_head: false
+  lambda_cbe: 0.0
+  lambda_selective: 0.0
+  lambda_monotonicity: 0.0
+  keep_filter_regularization: true
+
+# Frozen before the first v3-core training run. Validation is primary; test is
+# only an exploratory appendix because the original Pilot test was inspected.
+development_gates:
+  minimum_average_unseen_macro_f1_delta_vs_v1: 0.0
+  maximum_single_dataset_unseen_macro_f1_drop: 0.02
+  maximum_average_full_rate_macro_f1_drop: 0.01
+  require_positive_anchored_aurc_reduction_vs_confidence_both: true
+  maximum_average_anchored_aurc_delta_vs_v1: 0.0

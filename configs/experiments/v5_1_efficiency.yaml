@@ -1,0 +1,18 @@
+stage: v5_1_efficiency
+protocol_version: v5_1_sequential_efficiency_v1
+source_report: reports/v5_1_independent_confirmation_report.json
+required_source_protocol_hash: 447d8e4479cb2c7f57a38b7d8593f32d00c67c6b61abe4c655d90ffd5f17a0e3
+datasets:
+  - self_regulation_scp1_uea
+  - hand_movement_direction_uea
+  - racket_sports_uea
+  - heartbeat_uea
+roles: [v4_1_residual_gate, v5_dual_path]
+seed: 314159
+batch_size: 16
+warmup_iterations: 10
+timed_iterations: 50
+base_config: configs/experiments/pilot.yaml
+sequential_only: true
+training_forbidden: true
+automatic_followup_experiment: false

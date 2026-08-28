@@ -1,0 +1,94 @@
+stage: v5_1_full_extension
+protocol_version: v5_1_full_extension_v1
+status: frozen_awaiting_manual_start
+manual_start_required: true
+resume_default: true
+automatic_later_stage_allowed: false
+
+source:
+  full_report: reports/full_report.json
+  required_full_protocol_hash: ce1555d0ee8ded643c715db220364fa4115fd7fa8588d78305442205dd2bc47e
+  required_full_completed_runs: 210
+  independent_confirmation_report: reports/v5_1_independent_confirmation_report.json
+  required_independent_protocol_hash: 447d8e4479cb2c7f57a38b7d8593f32d00c67c6b61abe4c655d90ffd5f17a0e3
+  require_independent_pass: true
+
+design:
+  datasets:
+    - basicmotions_uea
+    - epilepsy_uea
+    - pamap2_uci
+    - mhealth_uci
+    - hapt_uci
+    - daily_sports_uci
+    - hydraulic_uci
+    - sleep_edfx_physionet
+    - eegmmi_physionet
+    - mitbih_arrhythmia_physionet
+  seeds: [17, 42, 2026]
+  candidate_internal_name: v5_dual_path
+  candidate_public_name: v5_1_safe_dual_path
+  base_config: configs/experiments/pilot.yaml
+  epochs: 30
+  early_stopping_patience: 7
+  wall_time_budget_seconds: 604800
+  train_rate_schedule:
+    mode: identity_plus_continuous_uniform
+    period_batches: 3
+    identity_slots: 1
+    uniform_min: 0.3
+    uniform_max: 0.75
+  validation_rate_ratios: [1.0, 0.9, 0.6, 0.4, 0.3]
+  test_rate_ratios: [1.0, 0.9, 0.6, 0.4, 0.3]
+  unseen_rate_ratios: [0.9, 0.6, 0.4, 0.3]
+  checkpoint_selection:
+    metric: balanced_full_unseen_macro_f1
+    full_rate_weight: 0.5
+    mean_unseen_rate_weight: 0.5
+  dataset_batch_sizes:
+    basicmotions_uea: 32
+    epilepsy_uea: 32
+    pamap2_uci: 32
+    mhealth_uci: 32
+    hapt_uci: 32
+    daily_sports_uci: 32
+    hydraulic_uci: 32
+    sleep_edfx_physionet: 32
+    eegmmi_physionet: 32
+    mitbih_arrhythmia_physionet: 32
+
+reliability_controller:
+  candidate_score: confidence_times_relative_analytic_gate_mass
+  fallback_score: max_softmax_confidence
+  selection_granularity: dataset_across_three_matched_seeds
+  minimum_seed_validation_aurc_gain: 0.0
+  minimum_dataset_mean_validation_aurc_gain: 0.0
+  required_positive_seed_fraction: 1.0
+  ties_select_fallback: true
+
+confirmation_gates:
+  comparison_method: v3_10
+  minimum_average_dataset_unseen_macro_f1_delta: 0.0
+  minimum_positive_dataset_count: 6
+  maximum_single_dataset_unseen_macro_f1_drop: 0.10
+  maximum_average_dataset_selected_aurc_delta_vs_confidence: 0.0
+  require_no_constant_prediction_at_any_test_rate: true
+  require_finite_metrics: true
+
+statistics:
+  primary_metric: mean_unseen_macro_f1
+  paired_unit: dataset_mean_over_three_seeds
+  test: two_sided_wilcoxon_signed_rank
+  multiplicity: holm
+  alpha: 0.05
+  bootstrap_resamples: 10000
+  bootstrap_seed: 51042
+
+scientific_boundaries:
+  exact_original_full_splits_rates_and_seeds: true
+  train_only_candidate_runs: 30
+  reuse_original_full_baseline_runs: 210
+  retrospective_extension_not_independent_test: true
+  validation_only_for_checkpoint_and_reliability_selection: true
+  result_dependent_seed_or_dataset_exclusion: false
+  automatic_followup_experiment: false

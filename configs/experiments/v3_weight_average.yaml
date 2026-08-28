@@ -1,0 +1,25 @@
+stage: v3_weight_average
+protocol_version: v3_weight_average_dev_v1
+development_only: true
+dataset: pamap2_uci
+seed: 42
+source_stability_report: reports/v3_stability_development_report.json
+source_failed_confirmation_report: reports/v3_multiseed_confirmation_report.json
+base_config: configs/experiments/pilot.yaml
+reliability_config: configs/experiments/v3_anchored_reliability.yaml
+
+weight_average:
+  checkpoint_a: checkpoint_best.pt
+  checkpoint_b: checkpoint_last.pt
+  coefficient_a: 0.5
+  coefficient_b: 0.5
+
+development_gates:
+  minimum_unseen_macro_f1_delta_vs_v1: -0.02
+  minimum_unseen_macro_f1_improvement_vs_v3_5_failed_run: 0.02
+  minimum_full_rate_macro_f1_delta_vs_v1: -0.01
+  require_guarded_aurc_nonworse_vs_confidence: true
+  maximum_selected_aurc_delta_vs_v1: 0.0
+  maximum_target_risk_delta_vs_confidence: 0.0
+
+wall_time_budget_seconds: 120

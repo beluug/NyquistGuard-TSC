@@ -1,0 +1,3 @@
+﻿method_id,method,parameters,flops_per_sample,latency_ms_per_sample_mean,throughput_samples_per_second,checkpoint_bytes
+v4_1_residual_gate,NyquistGuard-TSC V4.1,52863.0,573655.0,0.37430987499305957,2747.172214203405,223565.0
+v5_dual_path,NyquistGuard-TSC V5.1,143794.0,679501.5,0.5636109375006981,1790.302974827999,604989.0

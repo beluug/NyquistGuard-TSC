@@ -1,0 +1,13 @@
+﻿dataset_id,dataset,seed,unseen_delta_v5_1_minus_v4_1,full_rate_delta_v5_1_minus_v4_1,dataset_mean_unseen_delta,confirmation_status
+self_regulation_scp1_uea,SelfRegulationSCP1,314159,0.085255734,0.096605792,0.059311342,independent; TEST unused for selection
+self_regulation_scp1_uea,SelfRegulationSCP1,271828,0.091623220,0.071099276,0.059311342,independent; TEST unused for selection
+self_regulation_scp1_uea,SelfRegulationSCP1,161803,0.001055073,0.003410480,0.059311342,independent; TEST unused for selection
+hand_movement_direction_uea,HandMovementDirection,314159,0.193965753,0.211314140,0.065294826,independent; TEST unused for selection
+hand_movement_direction_uea,HandMovementDirection,271828,-0.029962799,-0.005693582,0.065294826,independent; TEST unused for selection
+hand_movement_direction_uea,HandMovementDirection,161803,0.031881525,0.003391209,0.065294826,independent; TEST unused for selection
+racket_sports_uea,RacketSports,314159,0.566228029,0.441872847,0.457408599,independent; TEST unused for selection
+racket_sports_uea,RacketSports,271828,0.416334416,0.369092958,0.457408599,independent; TEST unused for selection
+racket_sports_uea,RacketSports,161803,0.389663353,0.331249245,0.457408599,independent; TEST unused for selection
+heartbeat_uea,Heartbeat,314159,-0.190196720,-0.123740273,0.069864031,independent; TEST unused for selection
+heartbeat_uea,Heartbeat,271828,0.194679787,0.191717250,0.069864031,independent; TEST unused for selection
+heartbeat_uea,Heartbeat,161803,0.205109027,0.159964787,0.069864031,independent; TEST unused for selection

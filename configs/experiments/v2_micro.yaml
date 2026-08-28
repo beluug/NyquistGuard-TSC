@@ -1,0 +1,39 @@
+stage: v2_micro
+protocol_version: v2_micro_dev_v1
+development_only: true
+datasets: [basicmotions_uea, pamap2_uci]
+variants: [selector_detached_v2, cbe_balanced_v2]
+seed: 17
+
+# Fixed, bounded compute.  The runner stops before starting another epoch when
+# the total wall-clock budget has been consumed.
+epochs: 12
+wall_time_budget_seconds: 540
+
+# Reuse the frozen Pilot architecture, optimizer, rates and preprocessing.
+base_config: configs/experiments/pilot.yaml
+
+selector_v2:
+  target: detached_true_class_probability
+  detach_selector_inputs: true
+  lambda_correctness_bce: 1.0
+
+cbe_balancing:
+  parameter_group: filterbank
+  target_gradient_ratio: 0.05
+  minimum_scale: 0.1
+  maximum_scale: 1000.0
+
+# Pre-frozen development gates. Validation is primary; test is secondary and
+# exploratory because the Pilot test results have already been inspected.
+development_gates:
+  selector:
+    require_both_validation_aurc_improved_vs_v1: true
+    maximum_average_unseen_macro_f1_drop: 0.01
+  cbe:
+    minimum_median_filterbank_gradient_ratio: 0.02
+    maximum_median_filterbank_gradient_ratio: 0.10
+    minimum_average_unseen_macro_f1_delta: 0.0
+    maximum_single_dataset_unseen_macro_f1_drop: 0.01
+    maximum_average_full_rate_macro_f1_drop: 0.01
+

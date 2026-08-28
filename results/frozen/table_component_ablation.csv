@@ -1,0 +1,9 @@
+﻿dataset_id,dataset,variant,mean_unseen_macro_f1,full_rate_macro_f1,unseen_delta_vs_v5_full,analysis_status
+self_regulation_scp1_uea,SelfRegulationSCP1,v5_full,0.707904697,0.709668617,0.000000000,retrospective descriptive; TEST previously accessed
+self_regulation_scp1_uea,SelfRegulationSCP1,no_signed_spatial_path,0.662859167,0.669045630,-0.045045530,retrospective descriptive; TEST previously accessed
+self_regulation_scp1_uea,SelfRegulationSCP1,mean_only_temporal_summary,0.806997822,0.804761928,0.099093125,retrospective descriptive; TEST previously accessed
+self_regulation_scp1_uea,SelfRegulationSCP1,fixed_equal_fusion,0.741286430,0.742048852,0.033381733,retrospective descriptive; TEST previously accessed
+racket_sports_uea,RacketSports,v5_full,0.812653878,0.855881744,0.000000000,retrospective descriptive; TEST previously accessed
+racket_sports_uea,RacketSports,no_signed_spatial_path,0.578716768,0.683890424,-0.233937110,retrospective descriptive; TEST previously accessed
+racket_sports_uea,RacketSports,mean_only_temporal_summary,0.842091262,0.863184771,0.029437384,retrospective descriptive; TEST previously accessed
+racket_sports_uea,RacketSports,fixed_equal_fusion,0.859361209,0.876013094,0.046707330,retrospective descriptive; TEST previously accessed

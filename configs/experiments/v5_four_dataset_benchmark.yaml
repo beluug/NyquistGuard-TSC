@@ -1,0 +1,61 @@
+stage: v5_four_dataset_benchmark
+protocol_version: v5_four_dataset_retrospective_benchmark_v1
+status: prepared_locked_until_v4_source_completed
+manual_start_required: true
+automatic_later_stage_allowed: false
+independent_confirmation_claim_allowed: false
+retrospective_benchmark_only: true
+
+source:
+  v4_confirmation_report: reports/v4_new_dataset_confirmation_report.json
+  required_status: completed
+  required_protocol_hash: 7303a5a153dc60a988c62cc23f83eaf2239f1c8ff7472c039144c6dabcbbcc2b
+  control_role: v4_1_residual_gate
+  note: reuse the 12 completed V4.1 control results; never retrain them
+
+scientific_boundary:
+  datasets_previously_test_accessed_by_v4: true
+  may_be_called_new_or_independent_v5_confirmation: false
+  test_may_select_v5_model_checkpoint_threshold_or_reliability: false
+  new_untouched_datasets_still_required_after_pass: 4
+
+design:
+  datasets:
+    - character_trajectories_uea
+    - motor_imagery_uea
+    - wisdm_activity_uci
+    - ptbxl_physionet
+  seeds: [16180, 57721, 94613]
+  candidate_role: v5_dual_path
+  epochs: 30
+  early_stopping_patience: 10
+  wall_time_budget_seconds: 604800
+  base_config: configs/experiments/pilot.yaml
+  initial_gate_floor: 0.5
+  spatial_channels: 24
+  train_rate_schedule:
+    mode: identity_plus_continuous_uniform
+    period_batches: 3
+    identity_slots: 1
+    uniform_min: 0.3
+    uniform_max: 0.75
+  validation_rate_ratios: [1.0, 0.9, 0.6, 0.4, 0.3]
+  test_rate_ratios: [1.0, 0.9, 0.6, 0.4, 0.3]
+  checkpoint_selection:
+    metric: balanced_full_unseen_macro_f1
+    full_rate_weight: 0.5
+    mean_unseen_rate_weight: 0.5
+  dataset_batch_sizes:
+    character_trajectories_uea: 64
+    motor_imagery_uea: 4
+    wisdm_activity_uci: 128
+    ptbxl_physionet: 32
+
+benchmark_gates:
+  minimum_average_dataset_unseen_macro_f1_delta_vs_v4_1: 0.0
+  minimum_positive_dataset_count: 3
+  maximum_single_dataset_unseen_macro_f1_drop: 0.02
+  maximum_average_dataset_full_rate_macro_f1_drop: 0.01
+  maximum_average_dataset_selected_aurc_delta_vs_confidence: 0.0
+  require_no_constant_prediction_at_any_test_rate: true
+  require_finite_all_metrics_and_gate_floors: true

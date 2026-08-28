@@ -1,0 +1,32 @@
+stage: v3_reliability
+protocol_version: v3_reliability_dev_v1
+development_only: true
+
+# Frozen before the 3-seed run. Validation is the primary development split.
+# Test is emitted only as an exploratory appendix because Pilot test results
+# have already been inspected.
+datasets: [basicmotions_uea, epilepsy_uea, pamap2_uci, mhealth_uci]
+seeds: [17, 42, 2026]
+base_config: configs/experiments/pilot.yaml
+unseen_rate_ratios: [0.9, 0.6, 0.4, 0.3]
+
+score:
+  name: nyquist_reliability_score
+  formula: max_softmax_confidence_times_relative_effective_gate_mass
+  confidence_exponent: 1.0
+  gate_quality_exponent: 1.0
+
+threshold_calibration:
+  pooled_validation_target_coverage: 0.8
+
+# These gates are fixed before reading this experiment's 3-seed validation
+# results. A pass authorizes only a subsequent small v3 model experiment.
+development_gates:
+  minimum_dataset_mean_pooled_aurc_relative_reduction: 0.0
+  minimum_improved_dataset_count: 3
+  minimum_improved_dataset_seed_count: 9
+  minimum_overall_mean_relative_reduction: 0.05
+  require_full_to_low_score_drop_all_dataset_seeds: true
+  minimum_dataset_count_with_lower_selective_risk_at_target_coverage: 3
+
+wall_time_budget_seconds: 540

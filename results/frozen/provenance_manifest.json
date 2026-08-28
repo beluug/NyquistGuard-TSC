@@ -1,0 +1,127 @@
+{
+  "status": "generated_from_frozen_reports",
+  "generated_at_utc": "2026-08-28T13:26:25.129694+00:00",
+  "publisher_profile": "provisional general scientific figure; target-journal submission rules pending verification",
+  "primary_unit": "dataset; seeds are repeated training runs and are not treated as independent datasets",
+  "transformations": [
+    "V5.1 rate values: arithmetic mean across 10 dataset means, each based on 3 seeds",
+    "paired effects and bootstrap intervals: reused verbatim from the frozen V5.1 extension report",
+    "independent confirmation: dataset means over three fresh seeds",
+    "component ablation: descriptive two-dataset comparison after retraining each variant"
+  ],
+  "source_files": {
+    "full": {
+      "path": "reports\\full_report.json",
+      "sha256": "abf74aa2b4e651d6f92cbe0a8903b3fad9e66318812026f1774f35ca0127cd99"
+    },
+    "extension": {
+      "path": "reports\\v5_1_full_extension_report.json",
+      "sha256": "6b6d7723d8b1c34994489aba49e3934d3c982e1a49a98c3562f8fbbe7a499056"
+    },
+    "independent": {
+      "path": "reports\\v5_1_independent_confirmation_report.json",
+      "sha256": "cacc14e187062d271d38fff31589cc36ea751e62e648fafe0a0be59d77b8c5a7"
+    },
+    "ablation": {
+      "path": "reports\\v5_1_component_ablation_report.json",
+      "sha256": "ffb91215026688b1674074b9f960bf016022b2722c6d901b5886d4c80d28d99f"
+    },
+    "efficiency": {
+      "path": "reports\\v5_1_efficiency_report.json",
+      "sha256": "6be2278fbc53c43b6b426ef8dc857351b65e40584c7a7d139fab0645262a8e44"
+    }
+  },
+  "output_files": {
+    "figure_captions_and_alt_text.md": {
+      "sha256": "c537b0f82587c44eeb9ead75763a9ef327c694639ce62c497854abfe7537d24f",
+      "bytes": 2537
+    },
+    "figure_component_ablation.pdf": {
+      "sha256": "5b671e515faa1f5aa08768dc7f8f449692908b63118ab99e47957227455ef20c",
+      "bytes": 37483
+    },
+    "figure_component_ablation.png": {
+      "sha256": "4c9e50493c6f616a9a816137d650e1006c268e27456acaed80805de097dc755b",
+      "bytes": 115701
+    },
+    "figure_independent_confirmation.pdf": {
+      "sha256": "365feb553f4b78bd4b7eef0f7416df1a310f6fcad05934a73f8c347c621a9ef9",
+      "bytes": 14561
+    },
+    "figure_independent_confirmation.png": {
+      "sha256": "65a6e07dfbe01cebe3b4e8956f838f526644c678f411c71cfeacd9a970a5333e",
+      "bytes": 67224
+    },
+    "figure_paired_dataset_effects.pdf": {
+      "sha256": "4477612cb9cad610c1fb3913cdfa794f1c58f4eb920945ca87800a5dcfe7c5ea",
+      "bytes": 18263
+    },
+    "figure_paired_dataset_effects.png": {
+      "sha256": "13cad7e88913cf9b2fd82e9ce03c33fe280cc1abe3f767a8fd387351cda39bcd",
+      "bytes": 99396
+    },
+    "figure_rate_curves.pdf": {
+      "sha256": "1e8c64413b11faa08275947eb30c4839999701c95658701695fa6db0385fc862",
+      "bytes": 17803
+    },
+    "figure_rate_curves.png": {
+      "sha256": "5e2426d6be746ad6ba353065ef44f28eb5bfcc43057368bd901fae0d90766242",
+      "bytes": 177435
+    },
+    "figure_rate_curves_data.csv": {
+      "sha256": "29de72c35f45fb4bfd060c907908d5d219235489e01ecc5be21a481a697ffcb7",
+      "bytes": 4078
+    },
+    "table_component_ablation.csv": {
+      "sha256": "c2d98c17dd5c1f05af0546df4e798e2bb25ff8f365e9b98db0d5572925b6b926",
+      "bytes": 1279
+    },
+    "table_dataset_effects.csv": {
+      "sha256": "4c5fe5381a378fa6e61ea39f728035f0d41d6d53d4bff628cb2c8a72b57a66b5",
+      "bytes": 7081
+    },
+    "table_efficiency.csv": {
+      "sha256": "4f8c400f792cd0bbe2b80553fe7c5d3a21f00e04ce323065432afc16dea9ddda",
+      "bytes": 329
+    },
+    "table_independent_confirmation.csv": {
+      "sha256": "07522c84db89d0bd78e4fe46ce7f8ed6ffa86861472a11dabf19468be6b80a84",
+      "bytes": 1582
+    },
+    "table_main_comparison.csv": {
+      "sha256": "44dc6d27666ac898c24fce524e229035f694c9e6148cc1ede1da97daf17c8de4",
+      "bytes": 630
+    },
+    "table_paired_statistics.csv": {
+      "sha256": "0a984e3a4028c7ba1b788f1cdade688edb9152ed77bb31f411e33d0312da1406",
+      "bytes": 895
+    },
+    "v5_1_results_draft_en.md": {
+      "sha256": "7e343c7704a03243e0c20f2c1eb6d0c15e6f1ece0efec5add44a0a3c0ea2e805",
+      "bytes": 4565
+    },
+    "v5_1_results_summary_zh.md": {
+      "sha256": "8490de73ac71142e97a7c6728a7d00f4d3f46fb0c3422f52506cfa04054b348a",
+      "bytes": 1691
+    }
+  },
+  "counts": {
+    "table_rows": {
+      "main": 8,
+      "paired": 7,
+      "effects": 70,
+      "independent": 12,
+      "ablation": 8,
+      "efficiency": 2
+    },
+    "rate_curve_rows": 40,
+    "figure_files": 8,
+    "narrative_files": 3
+  },
+  "scientific_boundaries": {
+    "v5_1_full_extension": "retrospective extension of a previously accessed Full test matrix",
+    "independent_confirmation": "independent; test unused for selection",
+    "component_ablation": "retrospective descriptive; n=2 datasets",
+    "strict_full_decision": false
+  }
+}

@@ -1,0 +1,39 @@
+stage: v5_1_component_ablation
+protocol_version: v5_1_retrained_component_ablation_v1
+status: frozen_awaiting_manual_start
+manual_start_required: true
+resume_default: true
+automatic_later_stage_allowed: false
+source_report: reports/v5_1_independent_confirmation_report.json
+required_source_protocol_hash: 447d8e4479cb2c7f57a38b7d8593f32d00c67c6b61abe4c655d90ffd5f17a0e3
+base_config: configs/experiments/pilot.yaml
+datasets: [self_regulation_scp1_uea, racket_sports_uea]
+seeds: [314159, 271828, 161803]
+variants:
+  - v5_full
+  - no_signed_spatial_path
+  - mean_only_temporal_summary
+  - fixed_equal_fusion
+epochs: 30
+early_stopping_patience: 10
+wall_time_budget_seconds: 43200
+dataset_batch_sizes:
+  self_regulation_scp1_uea: 32
+  racket_sports_uea: 32
+train_rate_schedule:
+  mode: identity_plus_continuous_uniform
+  period_batches: 3
+  identity_slots: 1
+  uniform_min: 0.3
+  uniform_max: 0.75
+validation_rate_ratios: [1.0, 0.9, 0.6, 0.4, 0.3]
+test_rate_ratios: [1.0, 0.9, 0.6, 0.4, 0.3]
+checkpoint_selection:
+  metric: balanced_full_unseen_macro_f1
+  full_rate_weight: 0.5
+  mean_unseen_rate_weight: 0.5
+scientific_boundary:
+  retrain_every_variant: true
+  primary_metric: mean_unseen_macro_f1
+  retrospective_test_ablation_not_independent_confirmation: true
+  no_result_dependent_seed_or_dataset_exclusion: true

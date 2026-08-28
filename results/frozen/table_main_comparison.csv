@@ -1,0 +1,9 @@
+﻿display_order,method_id,method,mean_unseen_macro_f1,worst_unseen_macro_f1,full_rate_macro_f1
+1,v5_1_safe_dual_path,NyquistGuard-TSC V5.1,0.758404,0.725756,0.769106
+2,minirocket,"MiniROCKET (10,000 kernels)",0.714784,0.629843,0.769637
+3,multirocket,"MultiROCKET (1,000 kernels)",0.619112,0.451848,0.788707
+4,multirate_tcn,Multirate TCN,0.607837,0.523711,0.665384
+5,v3_10_no_nyquist_gate,v3.10 without Nyquist gate,0.604178,0.534177,0.638210
+6,fixed_rate_tcn,Fixed-rate TCN,0.572519,0.483397,0.662974
+7,v3_10,NyquistGuard-TSC v3.10,0.567085,0.473345,0.633258
+8,v1_nyquistguard,NyquistGuard v1,0.516378,0.362384,0.632584

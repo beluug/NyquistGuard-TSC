@@ -1,0 +1,42 @@
+stage: v3_multiseed_confirmation
+protocol_version: v3_multiseed_confirmation_dev_v1
+development_only: true
+datasets: [basicmotions_uea, pamap2_uci]
+confirmation_seeds: [42, 2026]
+development_seed_excluded_from_primary_gate: 17
+run_order:
+  - [basicmotions_uea, 42]
+  - [pamap2_uci, 2026]
+  - [basicmotions_uea, 2026]
+  - [pamap2_uci, 42]
+
+epochs: 30
+wall_time_budget_seconds: 540
+base_config: configs/experiments/pilot.yaml
+reliability_config: configs/experiments/v3_anchored_reliability.yaml
+
+checkpoint_selection:
+  split: validation
+  rate_ratios: [1.0, 0.6]
+  metric: mean_macro_f1
+  early_stopping_patience: 7
+
+core:
+  use_nyquist_gate: true
+  use_selective_head: false
+  lambda_cbe: 0.0
+  lambda_selective: 0.0
+  lambda_monotonicity: 0.0
+  keep_filter_regularization: true
+
+# Frozen before seeds 42/2026 are trained. These four runs are the primary
+# confirmation units; seed17 remains development evidence only.
+confirmation_gates:
+  minimum_average_unseen_macro_f1_delta_vs_v1: 0.0
+  minimum_positive_unseen_macro_f1_run_count: 3
+  maximum_single_run_unseen_macro_f1_drop: 0.02
+  maximum_average_full_rate_macro_f1_drop: 0.01
+  require_guarded_aurc_nonworse_vs_confidence_all_runs: true
+  minimum_calibrated_run_count: 1
+  maximum_average_selected_aurc_delta_vs_v1: 0.0
+  maximum_average_target_risk_delta_vs_confidence: 0.0

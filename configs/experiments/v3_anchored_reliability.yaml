@@ -1,0 +1,27 @@
+stage: v3_anchored_reliability
+protocol_version: v3_anchored_reliability_dev_v1
+development_only: true
+datasets: [basicmotions_uea, epilepsy_uea, pamap2_uci, mhealth_uci]
+seeds: [17, 42, 2026]
+base_config: configs/experiments/pilot.yaml
+rate_ratios: [1.0, 0.9, 0.6, 0.4, 0.3]
+
+calibrator:
+  type: confidence_anchored_standardized_logistic_correctness
+  regularization_c: 1.0
+  group_folds: 4
+  shrinkage_pseudo_groups: 32
+  blend_space: log_odds
+
+threshold_calibration:
+  pooled_validation_target_coverage: 0.8
+
+# Identical outcome gates to v3.2; the new element is variance control.
+development_gates:
+  minimum_improved_dataset_count: 3
+  minimum_improved_dataset_seed_count: 9
+  minimum_overall_mean_pooled_aurc_relative_reduction: 0.05
+  minimum_dataset_count_with_lower_selective_risk_at_target_coverage: 3
+  require_all_calibrators_finite: true
+
+wall_time_budget_seconds: 540

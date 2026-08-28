@@ -1,0 +1,37 @@
+stage: v4_residual_gate_matched_control
+protocol_version: v4_1_residual_gate_matched_budget_audit_v1
+development_only: true
+purpose: correct the unequal 18-vs-30 epoch cap in the preliminary V4.1 screen
+candidate_source: reports/v4_residual_gate_micro_report.json
+independent_confirmation_claim_allowed: false
+
+data_boundary:
+  allowed: [existing_train_splits, existing_validation_splits]
+  forbidden: [existing_test_splits, full_metrics, full_predictions]
+  minimum_new_confirmation_datasets: 4
+
+matched_screen:
+  datasets: [basicmotions_uea, pamap2_uci]
+  seed: 17
+  epochs: 30
+  early_stopping_patience: 10
+  wall_time_budget_seconds: 420
+  base_config: configs/experiments/pilot.yaml
+  control: v3_10_hard_gate
+  train_rate_schedule:
+    mode: identity_plus_continuous_uniform
+    period_batches: 3
+    identity_slots: 1
+    uniform_min: 0.3
+    uniform_max: 0.75
+  validation_rate_ratios: [1.0, 0.9, 0.6, 0.4, 0.3]
+  checkpoint_selection:
+    metric: balanced_full_unseen_macro_f1
+    full_rate_weight: 0.5
+    mean_unseen_rate_weight: 0.5
+  development_gates:
+    minimum_average_unseen_macro_f1_delta_vs_hard_gate: 0.02
+    maximum_single_dataset_unseen_macro_f1_drop: 0.01
+    maximum_average_full_rate_macro_f1_drop: 0.01
+    require_selected_reliability_nonworse_than_confidence: true
+    require_rate_sufficiency_drop_both_datasets: true

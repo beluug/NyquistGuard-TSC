@@ -1,0 +1,59 @@
+stage: v3_10_independent_confirmation
+protocol_version: v3_10_independent_confirmation_v1
+confirmation_only: true
+manual_start_required: true
+datasets: [basicmotions_uea, pamap2_uci]
+confirmation_seeds: [31415, 27182]
+development_seeds_excluded: [17, 42, 2026]
+
+# Counterbalanced within dataset x seed blocks. Every block contains one
+# candidate and one same-seed v1 control; no result-dependent reordering.
+run_order:
+  - [basicmotions_uea, 31415, v1_control]
+  - [basicmotions_uea, 31415, v3_10_candidate]
+  - [pamap2_uci, 27182, v3_10_candidate]
+  - [pamap2_uci, 27182, v1_control]
+  - [basicmotions_uea, 27182, v3_10_candidate]
+  - [basicmotions_uea, 27182, v1_control]
+  - [pamap2_uci, 31415, v1_control]
+  - [pamap2_uci, 31415, v3_10_candidate]
+
+epochs: 30
+wall_time_budget_seconds: 2400
+base_config: configs/experiments/pilot.yaml
+reliability_config: configs/experiments/v3_anchored_reliability.yaml
+source_development_report: reports/v3_continuous_rate_development_report.json
+
+secondary_rate_sampling:
+  mode: identity_plus_continuous_uniform
+  period_batches: 3
+  identity_slots: 1
+  uniform_min: 0.3
+  uniform_max: 0.75
+
+checkpoint_selection:
+  split: validation
+  rate_ratios: [1.0, 0.9, 0.6, 0.4, 0.3]
+  metric: balanced_full_unseen_macro_f1
+  full_rate_weight: 0.5
+  mean_unseen_rate_weight: 0.5
+  early_stopping_patience: 7
+
+core:
+  use_nyquist_gate: true
+  use_selective_head: false
+  lambda_cbe: 0.0
+  lambda_selective: 0.0
+  lambda_monotonicity: 0.0
+  keep_filter_regularization: true
+
+# Unchanged from the earlier v3.5 multi-seed confirmation.
+confirmation_gates:
+  minimum_average_unseen_macro_f1_delta_vs_v1: 0.0
+  minimum_positive_unseen_macro_f1_run_count: 3
+  maximum_single_run_unseen_macro_f1_drop: 0.02
+  maximum_average_full_rate_macro_f1_drop: 0.01
+  require_guarded_aurc_nonworse_vs_confidence_all_runs: true
+  minimum_calibrated_run_count: 1
+  maximum_average_selected_aurc_delta_vs_v1: 0.0
+  maximum_average_target_risk_delta_vs_confidence: 0.0

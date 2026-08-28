@@ -1,0 +1,49 @@
+stage: smoke
+protocol_version: smoke_v1
+seed: 17
+dataset_id: basicmotions_uea
+original_sampling_rate_hz: 10.0
+batch_size: 4
+learning_rate: 0.001
+gradient_clip_norm: 1.0
+amp_initial_scale: 1024.0
+amp_growth_interval: 2000
+high_rate_ratio: 1.0
+low_rate_ratio: 0.5
+antialias_fir_taps: 31
+antialias_rolloff: 0.90
+model:
+  num_bands: 8
+  pooled_positions: 16
+  hidden_dim: 32
+  encoder_depth: 2
+  encoder_kernel_size: 5
+  dropout: 0.0
+  min_center_hz: 0.20
+  max_center_hz: 4.50
+  min_sigma_seconds: 0.04
+  max_sigma_seconds: 0.40
+  kernel_support_sigmas: 4.0
+  max_kernel_seconds: 1.0
+  filterbank_type: physical
+  discrete_kernel_size: 15
+  use_nyquist_gate: true
+  use_selective_head: true
+  selective_hidden_dim: 32
+  reference_sampling_rate_hz: 10.0
+  timestamp_relative_tolerance: 0.05
+objective:
+  lambda_cbe: 1.0
+  lambda_selective: 1.0
+  lambda_monotonicity: 0.1
+  lambda_filter_regularization: 0.01
+  target_coverage: 0.80
+  coverage_weight: 5.0
+  monotonicity_margin: 0.0
+  equivariance_mode: common_band_equivariance
+  common_band_mask: exact_min
+  softmin_temperature: 0.05
+  min_center_hz: 0.20
+  max_center_hz: 4.50
+  min_sigma_seconds: 0.04
+  max_sigma_seconds: 0.40

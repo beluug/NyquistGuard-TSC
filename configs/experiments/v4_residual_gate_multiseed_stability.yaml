@@ -1,0 +1,59 @@
+stage: v4_residual_gate_multiseed_stability
+protocol_version: v4_1_residual_gate_multiseed_stability_v1
+development_only: true
+purpose: seed_stability_before_freezing_for_new_dataset_confirmation
+source_matched_report: reports/v4_residual_gate_matched_report.json
+source_matched_protocol_hash: cb58054f2ed21442ef0bfb4638613a645b9693046066bb13e86a0b61d8d46d8e
+manual_start_required: true
+independent_confirmation_claim_allowed: false
+
+data_boundary:
+  allowed: [existing_train_splits, existing_validation_splits]
+  forbidden: [existing_test_splits, full_metrics, full_predictions]
+  minimum_new_confirmation_datasets_after_pass: 4
+
+design:
+  datasets: [basicmotions_uea, pamap2_uci]
+  stability_seeds: [42, 2026]
+  development_seed_excluded_from_primary_gate: 17
+  roles: [v3_10_hard_gate, v4_1_residual_gate]
+  initial_gate_floor: 0.5
+  run_order:
+    - [basicmotions_uea, 42, v3_10_hard_gate]
+    - [basicmotions_uea, 42, v4_1_residual_gate]
+    - [pamap2_uci, 2026, v3_10_hard_gate]
+    - [pamap2_uci, 2026, v4_1_residual_gate]
+    - [basicmotions_uea, 2026, v3_10_hard_gate]
+    - [basicmotions_uea, 2026, v4_1_residual_gate]
+    - [pamap2_uci, 42, v3_10_hard_gate]
+    - [pamap2_uci, 42, v4_1_residual_gate]
+  epochs: 30
+  early_stopping_patience: 10
+  wall_time_budget_seconds: 1800
+  base_config: configs/experiments/pilot.yaml
+  train_rate_schedule:
+    mode: identity_plus_continuous_uniform
+    period_batches: 3
+    identity_slots: 1
+    uniform_min: 0.3
+    uniform_max: 0.75
+  validation_rate_ratios: [1.0, 0.9, 0.6, 0.4, 0.3]
+  checkpoint_selection:
+    metric: balanced_full_unseen_macro_f1
+    full_rate_weight: 0.5
+    mean_unseen_rate_weight: 0.5
+  reliability_controller:
+    candidate: confidence_times_relative_effective_gate_mass
+    fallback: max_softmax_confidence
+    activation_rule: candidate_pooled_validation_aurc_not_greater_than_fallback
+
+# Frozen before seeds 42/2026 are trained. Dataset x seed is the paired unit;
+# repeated rates are not counted as independent replicates.
+stability_gates:
+  minimum_average_unseen_macro_f1_delta_vs_hard_gate: 0.02
+  minimum_positive_unseen_macro_f1_pair_count: 3
+  maximum_single_pair_unseen_macro_f1_drop: 0.02
+  require_positive_mean_unseen_delta_each_seed: true
+  maximum_average_full_rate_macro_f1_drop: 0.01
+  require_selected_reliability_nonworse_than_confidence_all_pairs: true
+  require_finite_all_rates_and_gate_floors: true

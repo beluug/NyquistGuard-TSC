@@ -1,0 +1,73 @@
+stage: v5_1_independent_confirmation
+protocol_version: v5_1_four_untouched_dataset_confirmation_v1
+status: frozen_awaiting_data_and_train_only_preflight
+manual_start_required: true
+formal_test_access_requires_manual_start: true
+automatic_later_stage_allowed: false
+
+source:
+  selection_config: configs/experiments/v5_1_independent_confirmation_selection.yaml
+  v5_benchmark_report: reports/v5_four_dataset_benchmark_report.json
+  required_v5_benchmark_protocol_hash: 0197587d67b7ddcafa7c87159a38d93e5836bb2be398db985df2352b5593e00f
+  v5_safe_reliability_report: reports/v5_safe_reliability_development_report.json
+  required_safe_reliability_pass: true
+
+design:
+  datasets:
+    - self_regulation_scp1_uea
+    - hand_movement_direction_uea
+    - racket_sports_uea
+    - heartbeat_uea
+  seeds: [314159, 271828, 161803]
+  roles: [v4_1_residual_gate, v5_dual_path]
+  candidate_public_name: v5_1_safe_dual_path
+  epochs: 30
+  early_stopping_patience: 10
+  wall_time_budget_seconds: 604800
+  base_config: configs/experiments/pilot.yaml
+  initial_gate_floor: 0.5
+  spatial_channels: 24
+  train_rate_schedule:
+    mode: identity_plus_continuous_uniform
+    period_batches: 3
+    identity_slots: 1
+    uniform_min: 0.3
+    uniform_max: 0.75
+  validation_rate_ratios: [1.0, 0.9, 0.6, 0.4, 0.3]
+  test_rate_ratios: [1.0, 0.9, 0.6, 0.4, 0.3]
+  unseen_rate_ratios: [0.9, 0.6, 0.4, 0.3]
+  checkpoint_selection:
+    metric: balanced_full_unseen_macro_f1
+    full_rate_weight: 0.5
+    mean_unseen_rate_weight: 0.5
+  dataset_batch_sizes:
+    self_regulation_scp1_uea: 32
+    hand_movement_direction_uea: 32
+    racket_sports_uea: 32
+    heartbeat_uea: 16
+
+reliability_controller:
+  candidate_score: confidence_times_relative_analytic_gate_mass
+  fallback_score: max_softmax_confidence
+  selection_granularity: dataset_across_three_matched_seeds
+  minimum_seed_validation_aurc_gain: 0.0
+  minimum_dataset_mean_validation_aurc_gain: 0.0
+  required_positive_seed_fraction: 1.0
+  ties_select_fallback: true
+  freeze_all_dataset_modes_before_any_test_read: true
+
+confirmation_gates:
+  minimum_average_dataset_unseen_macro_f1_delta_vs_v4_1: 0.0
+  minimum_positive_dataset_count: 3
+  maximum_single_dataset_unseen_macro_f1_drop: 0.02
+  maximum_average_dataset_full_rate_macro_f1_drop: 0.01
+  maximum_average_dataset_selected_aurc_delta_vs_confidence: 0.0
+  require_no_constant_prediction_at_any_test_rate: true
+  require_finite_all_metrics_and_gate_floors: true
+
+reporting:
+  primary_unit: dataset
+  seed_treatment: repeated_matched_runs_within_dataset
+  test_evaluation_rule: once_per_validation_selected_checkpoint_after_global_mode_freeze
+  test_labels_for_any_selection: forbidden
+  prior_14_dataset_results_as_independent_evidence: forbidden

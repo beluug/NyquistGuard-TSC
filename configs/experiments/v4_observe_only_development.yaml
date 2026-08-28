@@ -1,0 +1,60 @@
+stage: v4_observe_only_development
+protocol_version: v4_observe_only_post_full_development_v1
+development_only: true
+post_full_test_review_generation: true
+full_v3_10_results_may_not_be_used_for_selection: true
+full_runner_or_run_root_may_not_be_modified: true
+
+data_boundary:
+  allowed: [synthetic_signals, existing_train_splits, existing_validation_splits]
+  forbidden: [existing_test_splits, full_metrics, full_predictions]
+  final_confirmation_requires_new_untouched_datasets: true
+  minimum_new_confirmation_datasets: 4
+
+hypothesis:
+  name: classification_observability_decoupling
+  classifier_input: unattenuated_physical_band_features
+  reliability_input: analytic_nyquist_observability
+  hard_feature_attenuation: false
+
+development_comparators:
+  - v3_10_hard_gate
+  - physical_core_without_observability
+  - v4_observe_only
+
+selection:
+  split: validation_only
+  primary_metric: balanced_full_unseen_macro_f1
+  reliability_metric: selected_aurc
+  require_finite_all_rates: true
+  test_metrics_forbidden: true
+
+# Frozen before the first real-data V4 training run. This is a bounded candidate
+# screen, not an independent confirmation experiment.
+micro_screen:
+  datasets: [basicmotions_uea, pamap2_uci]
+  seed: 17
+  epochs: 18
+  early_stopping_patience: 5
+  wall_time_budget_seconds: 540
+  base_config: configs/experiments/pilot.yaml
+  variants: [v3_10_hard_gate, v4_observe_only]
+  paired_initialization: true
+  train_rate_schedule:
+    mode: identity_plus_continuous_uniform
+    period_batches: 3
+    identity_slots: 1
+    uniform_min: 0.3
+    uniform_max: 0.75
+  validation_rate_ratios: [1.0, 0.9, 0.6, 0.4, 0.3]
+  checkpoint_selection:
+    metric: balanced_full_unseen_macro_f1
+    full_rate_weight: 0.5
+    mean_unseen_rate_weight: 0.5
+  reliability_rule: confidence_times_relative_effective_gate_mass
+  development_gates:
+    minimum_average_unseen_macro_f1_delta_vs_hard_gate: 0.02
+    maximum_single_dataset_unseen_macro_f1_drop: 0.01
+    maximum_average_full_rate_macro_f1_drop: 0.01
+    maximum_average_pooled_observability_aurc_delta_vs_confidence: 0.02
+    require_rate_sufficiency_drop_both_datasets: true

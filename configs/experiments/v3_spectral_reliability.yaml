@@ -1,0 +1,27 @@
+stage: v3_spectral_reliability
+protocol_version: v3_spectral_reliability_dev_v1
+development_only: true
+datasets: [basicmotions_uea, epilepsy_uea, pamap2_uci, mhealth_uci]
+seeds: [17, 42, 2026]
+base_config: configs/experiments/pilot.yaml
+unseen_rate_ratios: [0.9, 0.6, 0.4, 0.3]
+
+score:
+  name: sample_spectral_reliability_score
+  formula: max_softmax_confidence_times_sample_retained_band_energy
+  confidence_exponent: 1.0
+  retained_energy_exponent: 1.0
+
+threshold_calibration:
+  pooled_validation_target_coverage: 0.8
+
+# Kept identical to v3_reliability_dev_v1; no gate was relaxed after v3.0.
+development_gates:
+  minimum_dataset_mean_pooled_aurc_relative_reduction: 0.0
+  minimum_improved_dataset_count: 3
+  minimum_improved_dataset_seed_count: 9
+  minimum_overall_mean_relative_reduction: 0.05
+  require_full_to_low_score_drop_all_dataset_seeds: true
+  minimum_dataset_count_with_lower_selective_risk_at_target_coverage: 3
+
+wall_time_budget_seconds: 540

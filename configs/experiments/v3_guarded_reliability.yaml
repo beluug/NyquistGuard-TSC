@@ -1,0 +1,23 @@
+stage: v3_guarded_reliability
+protocol_version: v3_guarded_reliability_dev_v1
+development_only: true
+source_core_report: reports/v3_core_refinement_report.json
+datasets: [basicmotions_uea, pamap2_uci]
+seed: 17
+base_config: configs/experiments/pilot.yaml
+reliability_config: configs/experiments/v3_anchored_reliability.yaml
+
+controller:
+  selection_split: grouped_out_of_fold_validation
+  calibrated_mode: v3_3_confidence_anchored
+  fallback_mode: max_softmax_confidence
+  minimum_absolute_aurc_gain_to_enable_calibrator: 0.0
+
+development_gates:
+  require_source_classification_checks_passed: true
+  require_nonworse_validation_aurc_vs_confidence_all_datasets: true
+  minimum_calibrated_dataset_count: 1
+  maximum_average_selected_aurc_delta_vs_v1: 0.0
+  maximum_average_target_risk_delta_vs_confidence: 0.0
+
+wall_time_budget_seconds: 180

@@ -1,0 +1,50 @@
+model:
+  input_channels: null
+  num_classes: null
+  num_bands: 16
+  pooled_positions: 32
+  hidden_dim: 64
+  encoder_depth: 3
+  encoder_kernel_size: 5
+  dropout: 0.05
+  min_center_hz: 0.5
+  max_center_hz: 45.0
+  min_sigma_seconds: 0.015
+  max_sigma_seconds: 0.30
+  kernel_support_sigmas: 4.0
+  max_kernel_seconds: 1.0
+  filterbank_type: physical
+  discrete_kernel_size: 31
+  use_nyquist_gate: true
+  use_selective_head: true
+  selective_hidden_dim: 64
+  reference_sampling_rate_hz: 100.0
+  timestamp_relative_tolerance: 0.05
+
+objective:
+  lambda_cbe: 1.0
+  lambda_selective: 1.0
+  lambda_monotonicity: 0.1
+  lambda_filter_regularization: 0.01
+  target_coverage: 0.80
+  coverage_weight: 5.0
+  monotonicity_margin: 0.0
+  equivariance_mode: common_band_equivariance
+  common_band_mask: exact_min
+  softmin_temperature: 0.05
+  min_center_hz: 0.5
+  max_center_hz: 45.0
+  min_sigma_seconds: 0.015
+  max_sigma_seconds: 0.30
+  regularization_minimum_spacing_fraction: 0.35
+  regularization_spacing_weight: 1.0
+  regularization_coverage_weight: 0.1
+  regularization_bounds_weight: 1.0
+  regularization_gate_weight: 0.1
+  regularization_minimum_gate_softness: 0.01
+
+protocol:
+  train_rate_ratios: [1.0, 0.75, 0.5]
+  unseen_test_rate_ratios: [0.9, 0.6, 0.4, 0.3]
+  seeds: [17, 42, 2026]
+

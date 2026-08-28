@@ -1,0 +1,43 @@
+stage: v5_safe_reliability_development
+protocol_version: v5_1_multiseed_consensus_reliability_dev_v1
+development_only: true
+automatic_later_stage_allowed: false
+classification_training_allowed: false
+checkpoint_write_allowed: false
+retrospective_only: true
+
+source:
+  report: reports/v5_four_dataset_benchmark_report.json
+  required_status: completed
+  required_protocol_hash: 0197587d67b7ddcafa7c87159a38d93e5836bb2be398db985df2352b5593e00f
+  required_candidate_role: v5_dual_path
+  datasets:
+    - character_trajectories_uea
+    - motor_imagery_uea
+    - wisdm_activity_uci
+    - ptbxl_physionet
+  seeds: [16180, 57721, 94613]
+
+controller:
+  candidate_score: confidence_times_relative_analytic_gate_mass
+  fallback_score: max_softmax_confidence
+  selection_granularity: dataset_across_matched_seeds
+  minimum_seed_validation_aurc_gain: 0.0
+  minimum_dataset_mean_validation_aurc_gain: 0.0
+  required_positive_seed_fraction: 1.0
+  ties_select_fallback: true
+  rationale: activate physical observability only when every matched seed improves pooled validation AURC
+
+development_gates:
+  require_source_classification_checks_passed: true
+  require_classification_artifacts_byte_unchanged: true
+  require_each_dataset_selected_test_aurc_nonworse_than_confidence: true
+  maximum_average_dataset_selected_test_aurc_delta_vs_confidence: 0.0
+  require_finite_metrics: true
+
+scientific_boundary:
+  test_values_allowed_for_mode_selection: false
+  source_tests_already_accessed: true
+  independent_confirmation_claim_allowed: false
+  new_untouched_datasets_still_required: 4
+  note: test is evaluated only after the validation-only consensus modes are fixed; this remains retrospective development

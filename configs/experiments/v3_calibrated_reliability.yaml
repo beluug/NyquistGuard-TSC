@@ -1,0 +1,33 @@
+stage: v3_calibrated_reliability
+protocol_version: v3_calibrated_reliability_dev_v1
+development_only: true
+datasets: [basicmotions_uea, epilepsy_uea, pamap2_uci, mhealth_uci]
+seeds: [17, 42, 2026]
+base_config: configs/experiments/pilot.yaml
+rate_ratios: [1.0, 0.9, 0.6, 0.4, 0.3]
+
+calibrator:
+  type: standardized_logistic_correctness
+  regularization_c: 1.0
+  group_folds: 4
+  features:
+    - confidence_logit
+    - normalized_entropy
+    - top1_top2_margin
+    - sample_retained_band_energy
+    - log_rate_ratio
+    - confidence_times_retained_energy
+
+threshold_calibration:
+  pooled_validation_target_coverage: 0.8
+
+# Frozen before the first v3.2 run. Validation scores are out-of-fold with
+# original sample as the grouping unit. Test is not a primary decision input.
+development_gates:
+  minimum_improved_dataset_count: 3
+  minimum_improved_dataset_seed_count: 9
+  minimum_overall_mean_pooled_aurc_relative_reduction: 0.05
+  minimum_dataset_count_with_lower_selective_risk_at_target_coverage: 3
+  require_all_calibrators_finite: true
+
+wall_time_budget_seconds: 540

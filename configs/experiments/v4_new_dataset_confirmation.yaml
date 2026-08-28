@@ -1,0 +1,70 @@
+stage: v4_new_dataset_confirmation
+protocol_version: v4_1_new_dataset_confirmation_v1
+status: frozen_ready_not_started
+frozen_at_utc: '2026-08-28T04:08:10Z'
+manual_start_required: true
+formal_test_access_requires_manual_start: true
+auto_start_later_stage: false
+
+source:
+  selection_config: configs/experiments/v4_new_dataset_confirmation_selection.yaml
+  stability_report: reports/v4_residual_gate_multiseed_report.json
+  required_stability_status: completed
+  required_stability_pass: true
+  required_stability_protocol_hash: 105a821c18fc5e6b39308b021665ee1f2b4dc3aa4151d8398693217e180cbe4d
+  model_candidate: v4_1_residual_gate
+  matched_control: v3_10_hard_gate
+
+design:
+  datasets:
+    - character_trajectories_uea
+    - motor_imagery_uea
+    - wisdm_activity_uci
+    - ptbxl_physionet
+  seeds: [16180, 57721, 94613]
+  roles: [v3_10_hard_gate, v4_1_residual_gate]
+  initial_gate_floor: 0.5
+  epochs: 30
+  early_stopping_patience: 10
+  wall_time_budget_seconds: 604800
+  base_config: configs/experiments/pilot.yaml
+  train_rate_schedule:
+    mode: identity_plus_continuous_uniform
+    period_batches: 3
+    identity_slots: 1
+    uniform_min: 0.3
+    uniform_max: 0.75
+  validation_rate_ratios: [1.0, 0.9, 0.6, 0.4, 0.3]
+  test_rate_ratios: [1.0, 0.9, 0.6, 0.4, 0.3]
+  unseen_rate_ratios: [0.9, 0.6, 0.4, 0.3]
+  checkpoint_selection:
+    metric: balanced_full_unseen_macro_f1
+    full_rate_weight: 0.5
+    mean_unseen_rate_weight: 0.5
+  reliability_controller:
+    candidate: confidence_times_relative_effective_gate_mass
+    fallback: max_softmax_confidence
+    activation_rule: candidate_pooled_validation_aurc_not_greater_than_fallback
+  dataset_batch_sizes:
+    character_trajectories_uea: 64
+    motor_imagery_uea: 4
+    wisdm_activity_uci: 128
+    ptbxl_physionet: 32
+
+# Frozen before the first formal test read. Dataset means, not rates or seeds,
+# are the four primary statistical units.
+confirmation_gates:
+  minimum_average_dataset_unseen_macro_f1_delta_vs_hard_gate: 0.0
+  minimum_positive_dataset_count: 3
+  maximum_single_dataset_unseen_macro_f1_drop: 0.02
+  maximum_average_dataset_full_rate_macro_f1_drop: 0.01
+  maximum_average_dataset_selected_aurc_delta_vs_confidence: 0.0
+  require_finite_all_metrics_and_gate_floors: true
+
+reporting:
+  primary_metric: dataset_mean_across_seeds_of_mean_unseen_macro_f1_delta
+  primary_unit: dataset
+  seed_treatment: repeated_matched_runs_within_dataset
+  test_evaluation_rule: once_per_validation_selected_checkpoint
+  test_labels_for_model_or_threshold_selection: forbidden
+  existing_ten_full_datasets_as_confirmation_evidence: forbidden

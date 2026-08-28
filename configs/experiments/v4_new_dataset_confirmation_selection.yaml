@@ -1,0 +1,147 @@
+stage: v4_new_dataset_confirmation
+protocol_version: v4_1_new_dataset_confirmation_selection_v1
+status: protocol_frozen_ready_not_started
+frozen_at_utc: '2026-08-27T11:02:13Z'
+manual_start_required: true
+confirmation_started: false
+
+scientific_boundary:
+  model_candidate: v4_1_residual_gate
+  matched_primary_control: v3_10_hard_gate
+  model_code_frozen_before_dataset_selection: true
+  existing_full_datasets_allowed: false
+  existing_full_test_allowed: false
+  selected_dataset_count: 4
+  selected_dataset_ids:
+    - character_trajectories_uea
+    - motor_imagery_uea
+    - wisdm_activity_uci
+    - ptbxl_physionet
+  selection_used_model_results_on_these_datasets: false
+  test_access_before_final_protocol_freeze: forbidden
+  test_access_for_checkpoint_or_threshold_selection: forbidden
+  dataset_is_primary_statistical_unit: true
+  rates_or_seeds_are_not_independent_datasets: true
+
+planned_confirmation:
+  # The runnable protocol will be sealed only after train-only parser checks.
+  # These primary comparison choices and seeds are already frozen here.
+  primary_methods: [v3_10_hard_gate, v4_1_residual_gate]
+  confirmation_seeds: [16180, 57721, 94613]
+  test_rate_ratios: [1.0, 0.9, 0.6, 0.4, 0.3]
+  unseen_rate_ratios: [0.9, 0.6, 0.4, 0.3]
+  primary_metric: mean_unseen_macro_f1
+  full_rate_safeguard_metric: full_rate_macro_f1
+  reliability_metric: selected_aurc
+  training_budget_rule: matched_epoch_cap_patience_initialization_and_batch_order
+  execution_owner: user_for_large_formal_run
+  auto_start_after_download_or_parser_build: false
+
+datasets:
+  character_trajectories_uea:
+    domain: online_handwriting_motion
+    source_page_url: https://www.timeseriesclassification.com/description.php?Dataset=CharacterTrajectories
+    original_source_page_url: https://archive.ics.uci.edu/dataset/175/character+trajectories
+    download_url: https://zenodo.org/api/records/18723007/files-archive
+    archive_record_url: https://zenodo.org/records/18723007
+    archive_name: CharacterTrajectories.zip
+    archive_path: 'DOWNLOAD\CharacterTrajectories.zip'
+    download_owner: codex_small_download
+    expected_download_size_mb: 29.6
+    license: CC_BY_4_0_original_uci_release
+    sampling_rate_hz: 200
+    channels: 3
+    classes: 20
+    official_train_cases: 1422
+    official_test_cases: 1436
+    length: variable
+    task: classify_single_pen_down_character_from_x_y_and_pen_force_velocity
+    split_protocol: official_uea_train_test_with_stratified_validation_from_train_only
+    validation_fraction_of_official_train: 0.2
+    split_seed: 16180
+    unequal_length_rule: freeze_padding_or_crop_from_train_lengths_only_before_test_parser_is_enabled
+    acquisition_status: downloaded_and_extracted_without_test_content_access
+    raw_path: 'data\raw\uea\CharacterTrajectories'
+
+  motor_imagery_uea:
+    domain: invasive_ecog_motor_imagery
+    source_page_url: https://www.timeseriesclassification.com/description.php?Dataset=MotorImagery
+    archive_record_url: https://zenodo.org/records/11206246
+    download_urls:
+      train: https://zenodo.org/api/records/11206246/files/MotorImagery_TRAIN.ts/content
+      test: https://zenodo.org/api/records/11206246/files/MotorImagery_TEST.ts/content
+    file_paths:
+      train: '3 PACKAGES\MotorImagery_TRAIN.ts'
+      test: '3 PACKAGES\MotorImagery_TEST.ts'
+    download_owner: user_large_download
+    train_file_size_bytes: 414951187
+    test_file_size_bytes: 122386618
+    published_file_total_size_bytes: 537337805
+    zenodo_archive_endpoint_usable: false
+    zenodo_archive_limit_bytes: 300000000
+    license: source_terms_and_attribution_review_required_before_public_redistribution
+    sampling_rate_hz: 1000
+    channels: 64
+    classes: 2
+    official_train_cases: 278
+    official_test_cases: 100
+    length: 3000
+    task: classify_imagined_left_small_finger_vs_tongue_movement
+    split_protocol: official_session_train_test_with_stratified_validation_from_train_session_only
+    validation_fraction_of_official_train: 0.2
+    split_seed: 16180
+
+  wisdm_activity_uci:
+    domain: smartphone_human_activity
+    source_page_url: https://archive.ics.uci.edu/dataset/507/wisdm+smartphone+and+smartwatch+activity+and+biometrics+dataset
+    download_url: https://archive.ics.uci.edu/static/public/507/wisdm+smartphone+and+smartwatch+activity+and+biometrics+dataset.zip
+    archive_name: wisdm-dataset.zip
+    archive_path: '3 PACKAGES\wisdm-dataset.zip'
+    download_owner: user_large_download
+    expected_download_size_mb: 295.9
+    license: CC_BY_4_0
+    sampling_rate_hz: 20
+    selected_sensor: smartphone_accelerometer_only
+    channels: 3
+    classes: 18
+    subjects: 51
+    task: classify_activity_from_raw_smartphone_accelerometer
+    window_seconds: 5
+    stride_seconds: 5
+    split_protocol: subject_grouped_70_15_15
+    group_split_algorithm: sorted_subject_ids_then_numpy_default_rng_seed_16180_permutation
+    split_seed: 16180
+    train_subjects: [1600, 1604, 1605, 1608, 1609, 1610, 1611, 1612, 1613, 1615, 1616, 1620, 1622, 1623, 1624, 1625, 1626, 1628, 1629, 1630, 1631, 1632, 1633, 1635, 1637, 1640, 1641, 1642, 1643, 1644, 1645, 1646, 1648, 1649, 1650]
+    validation_subjects: [1601, 1603, 1617, 1619, 1627, 1634, 1636, 1647]
+    test_subjects: [1602, 1606, 1607, 1614, 1618, 1621, 1638, 1639]
+
+  ptbxl_physionet:
+    domain: clinical_twelve_lead_ecg
+    source_page_url: https://physionet.org/content/ptb-xl/1.0.3/
+    download_url: https://physionet.org/content/ptb-xl/get-zip/1.0.3/
+    archive_name: ptb-xl-1.0.3.zip
+    archive_path: '3 PACKAGES\ptb-xl-1.0.3.zip'
+    download_owner: user_large_download
+    expected_download_size_gb: 1.7
+    expected_uncompressed_size_gb: 3.0
+    license: CC_BY_4_0
+    version: 1.0.3
+    selected_waveforms: records100_only
+    sampling_rate_hz: 100
+    channels: 12
+    record_seconds: 10
+    source_records: 21799
+    source_patients: 18869
+    classes: [NORM, MI, STTC, CD, HYP]
+    task: single_diagnostic_superclass_classification
+    inclusion_rule: retain_records_mapping_to_exactly_one_diagnostic_superclass
+    split_protocol: official_strat_fold_1_to_8_train_9_validation_10_test
+
+download_policy:
+  large_archives_downloaded_by_user: [motor_imagery_uea, wisdm_activity_uci, ptbxl_physionet]
+  small_archives_downloaded_by_codex: [character_trajectories_uea]
+  user_requested_integrity_recheck: false
+  integrity_action: register_user_verified_without_rehashing_after_user_download
+  extraction_status: all_four_complete
+  parser_status: train_locked_preflight_pass_4_of_4
+  runnable_confirmation_script_status: built_tested_gui_ready_not_started

@@ -1,0 +1,830 @@
+{
+  "status": "completed",
+  "protocol_version": "v5_1_full_extension_v1",
+  "protocol_hash": "5e9436916b681315233406d8e8412f7078ab1784f77910798098a4f82e5df1ad",
+  "manual_confirmation": true,
+  "retrospective_full_extension": true,
+  "independent_confirmation": false,
+  "datasets": [
+    "basicmotions_uea",
+    "epilepsy_uea",
+    "pamap2_uci",
+    "mhealth_uci",
+    "hapt_uci",
+    "daily_sports_uci",
+    "hydraulic_uci",
+    "sleep_edfx_physionet",
+    "eegmmi_physionet",
+    "mitbih_arrhythmia_physionet"
+  ],
+  "seeds": [
+    17,
+    42,
+    2026
+  ],
+  "new_candidate_runs": 30,
+  "reused_full_runs": 210,
+  "source_full_protocol_hash": "ce1555d0ee8ded643c715db220364fa4115fd7fa8588d78305442205dd2bc47e",
+  "candidate_rows": [
+    {
+      "dataset_id": "basicmotions_uea",
+      "method": "v5_1_safe_dual_path",
+      "seed": 17,
+      "mean_unseen_macro_f1": 1.0,
+      "worst_unseen_macro_f1": 1.0,
+      "full_rate_macro_f1": 1.0,
+      "selected_pooled_aurc": 0.0,
+      "selected_aurc_delta_vs_confidence": 0.0,
+      "minimum_prediction_class_count": 4,
+      "duration_seconds": 6.546999999998661
+    },
+    {
+      "dataset_id": "basicmotions_uea",
+      "method": "v5_1_safe_dual_path",
+      "seed": 42,
+      "mean_unseen_macro_f1": 0.9686289587605378,
+      "worst_unseen_macro_f1": 0.9246411483253588,
+      "full_rate_macro_f1": 1.0,
+      "selected_pooled_aurc": 0.001164961500235966,
+      "selected_aurc_delta_vs_confidence": 0.0,
+      "minimum_prediction_class_count": 4,
+      "duration_seconds": 3.1559999999990396
+    },
+    {
+      "dataset_id": "basicmotions_uea",
+      "method": "v5_1_safe_dual_path",
+      "seed": 2026,
+      "mean_unseen_macro_f1": 0.9749530075187971,
+      "worst_unseen_macro_f1": 0.949937343358396,
+      "full_rate_macro_f1": 0.974937343358396,
+      "selected_pooled_aurc": 0.003511936996622318,
+      "selected_aurc_delta_vs_confidence": 0.0,
+      "minimum_prediction_class_count": 4,
+      "duration_seconds": 3.125
+    },
+    {
+      "dataset_id": "epilepsy_uea",
+      "method": "v5_1_safe_dual_path",
+      "seed": 17,
+      "mean_unseen_macro_f1": 0.7465295239168512,
+      "worst_unseen_macro_f1": 0.580690811535882,
+      "full_rate_macro_f1": 0.855573192239859,
+      "selected_pooled_aurc": 0.09518761715194843,
+      "selected_aurc_delta_vs_confidence": 0.01803387762805632,
+      "minimum_prediction_class_count": 4,
+      "duration_seconds": 7.686999999998079
+    },
+    {
+      "dataset_id": "epilepsy_uea",
+      "method": "v5_1_safe_dual_path",
+      "seed": 42,
+      "mean_unseen_macro_f1": 0.7368461761237904,
+      "worst_unseen_macro_f1": 0.5445122051063725,
+      "full_rate_macro_f1": 0.844317396070495,
+      "selected_pooled_aurc": 0.10768921506753233,
+      "selected_aurc_delta_vs_confidence": 0.020753737398457997,
+      "minimum_prediction_class_count": 4,
+      "duration_seconds": 7.9060000000026776
+    },
+    {
+      "dataset_id": "epilepsy_uea",
+      "method": "v5_1_safe_dual_path",
+      "seed": 2026,
+      "mean_unseen_macro_f1": 0.7794826369229407,
+      "worst_unseen_macro_f1": 0.6175768559637153,
+      "full_rate_macro_f1": 0.833048574583855,
+      "selected_pooled_aurc": 0.09355620026856426,
+      "selected_aurc_delta_vs_confidence": 0.01327254648594986,
+      "minimum_prediction_class_count": 4,
+      "duration_seconds": 8.125
+    },
+    {
+      "dataset_id": "pamap2_uci",
+      "method": "v5_1_safe_dual_path",
+      "seed": 17,
+      "mean_unseen_macro_f1": 0.43263093708554096,
+      "worst_unseen_macro_f1": 0.42623715255457945,
+      "full_rate_macro_f1": 0.43352473513559375,
+      "selected_pooled_aurc": 0.30089704064525413,
+      "selected_aurc_delta_vs_confidence": 0.0,
+      "minimum_prediction_class_count": 12,
+      "duration_seconds": 380.59400000000096
+    },
+    {
+      "dataset_id": "pamap2_uci",
+      "method": "v5_1_safe_dual_path",
+      "seed": 42,
+      "mean_unseen_macro_f1": 0.46322727678231845,
+      "worst_unseen_macro_f1": 0.45277642621810066,
+      "full_rate_macro_f1": 0.4688700117367806,
+      "selected_pooled_aurc": 0.30706503668507934,
+      "selected_aurc_delta_vs_confidence": 0.0,
+      "minimum_prediction_class_count": 12,
+      "duration_seconds": 153.43699999999808
+    },
+    {
+      "dataset_id": "pamap2_uci",
+      "method": "v5_1_safe_dual_path",
+      "seed": 2026,
+      "mean_unseen_macro_f1": 0.4329880593445989,
+      "worst_unseen_macro_f1": 0.413245994677281,
+      "full_rate_macro_f1": 0.4169215710841531,
+      "selected_pooled_aurc": 0.33118815855236505,
+      "selected_aurc_delta_vs_confidence": 0.0,
+      "minimum_prediction_class_count": 12,
+      "duration_seconds": 316.0
+    },
+    {
+      "dataset_id": "mhealth_uci",
+      "method": "v5_1_safe_dual_path",
+      "seed": 17,
+      "mean_unseen_macro_f1": 0.9640101451308017,
+      "worst_unseen_macro_f1": 0.9564998108687429,
+      "full_rate_macro_f1": 0.958248987854251,
+      "selected_pooled_aurc": 0.006734385935603601,
+      "selected_aurc_delta_vs_confidence": 0.0,
+      "minimum_prediction_class_count": 12,
+      "duration_seconds": 53.28099999999904
+    },
+    {
+      "dataset_id": "mhealth_uci",
+      "method": "v5_1_safe_dual_path",
+      "seed": 42,
+      "mean_unseen_macro_f1": 0.9686048372479829,
+      "worst_unseen_macro_f1": 0.9619574433057579,
+      "full_rate_macro_f1": 0.9623967656647395,
+      "selected_pooled_aurc": 0.011552456889547648,
+      "selected_aurc_delta_vs_confidence": 0.0,
+      "minimum_prediction_class_count": 12,
+      "duration_seconds": 54.56300000000192
+    },
+    {
+      "dataset_id": "mhealth_uci",
+      "method": "v5_1_safe_dual_path",
+      "seed": 2026,
+      "mean_unseen_macro_f1": 0.9641517810471031,
+      "worst_unseen_macro_f1": 0.9532018932723103,
+      "full_rate_macro_f1": 0.9663229943706378,
+      "selected_pooled_aurc": 0.004058147275282422,
+      "selected_aurc_delta_vs_confidence": 0.0,
+      "minimum_prediction_class_count": 12,
+      "duration_seconds": 53.01499999999942
+    },
+    {
+      "dataset_id": "hapt_uci",
+      "method": "v5_1_safe_dual_path",
+      "seed": 17,
+      "mean_unseen_macro_f1": 0.8031266108580024,
+      "worst_unseen_macro_f1": 0.7995311322634714,
+      "full_rate_macro_f1": 0.8024841192152657,
+      "selected_pooled_aurc": 0.020134972316790227,
+      "selected_aurc_delta_vs_confidence": 0.0,
+      "minimum_prediction_class_count": 12,
+      "duration_seconds": 277.5
+    },
+    {
+      "dataset_id": "hapt_uci",
+      "method": "v5_1_safe_dual_path",
+      "seed": 42,
+      "mean_unseen_macro_f1": 0.8391522686927946,
+      "worst_unseen_macro_f1": 0.8294101336244438,
+      "full_rate_macro_f1": 0.8213454163090096,
+      "selected_pooled_aurc": 0.007886738301803604,
+      "selected_aurc_delta_vs_confidence": 0.0,
+      "minimum_prediction_class_count": 12,
+      "duration_seconds": 295.875
+    },
+    {
+      "dataset_id": "hapt_uci",
+      "method": "v5_1_safe_dual_path",
+      "seed": 2026,
+      "mean_unseen_macro_f1": 0.8103639898103491,
+      "worst_unseen_macro_f1": 0.8076318073878491,
+      "full_rate_macro_f1": 0.807185061688178,
+      "selected_pooled_aurc": 0.011040975591272742,
+      "selected_aurc_delta_vs_confidence": 0.0,
+      "minimum_prediction_class_count": 12,
+      "duration_seconds": 339.57800000000134
+    },
+    {
+      "dataset_id": "daily_sports_uci",
+      "method": "v5_1_safe_dual_path",
+      "seed": 17,
+      "mean_unseen_macro_f1": 0.8716006255178556,
+      "worst_unseen_macro_f1": 0.8623543763357708,
+      "full_rate_macro_f1": 0.8504529419345428,
+      "selected_pooled_aurc": 0.028190117183293915,
+      "selected_aurc_delta_vs_confidence": 0.0,
+      "minimum_prediction_class_count": 19,
+      "duration_seconds": 178.42199999999866
+    },
+    {
+      "dataset_id": "daily_sports_uci",
+      "method": "v5_1_safe_dual_path",
+      "seed": 42,
+      "mean_unseen_macro_f1": 0.840075310717336,
+      "worst_unseen_macro_f1": 0.8366628021251714,
+      "full_rate_macro_f1": 0.8174093761811553,
+      "selected_pooled_aurc": 0.040536374869252025,
+      "selected_aurc_delta_vs_confidence": 0.0,
+      "minimum_prediction_class_count": 19,
+      "duration_seconds": 164.53100000000268
+    },
+    {
+      "dataset_id": "daily_sports_uci",
+      "method": "v5_1_safe_dual_path",
+      "seed": 2026,
+      "mean_unseen_macro_f1": 0.8516943957217377,
+      "worst_unseen_macro_f1": 0.8418485652441295,
+      "full_rate_macro_f1": 0.826247210471359,
+      "selected_pooled_aurc": 0.03271614661583478,
+      "selected_aurc_delta_vs_confidence": 0.0,
+      "minimum_prediction_class_count": 19,
+      "duration_seconds": 97.71899999999732
+    },
+    {
+      "dataset_id": "hydraulic_uci",
+      "method": "v5_1_safe_dual_path",
+      "seed": 17,
+      "mean_unseen_macro_f1": 0.9911627504108294,
+      "worst_unseen_macro_f1": 0.9776622138024431,
+      "full_rate_macro_f1": 0.997901967751214,
+      "selected_pooled_aurc": 9.23731845587585e-05,
+      "selected_aurc_delta_vs_confidence": 0.0,
+      "minimum_prediction_class_count": 4,
+      "duration_seconds": 93.5470000000023
+    },
+    {
+      "dataset_id": "hydraulic_uci",
+      "method": "v5_1_safe_dual_path",
+      "seed": 42,
+      "mean_unseen_macro_f1": 0.9736806482935136,
+      "worst_unseen_macro_f1": 0.9609435150836425,
+      "full_rate_macro_f1": 0.9830043859649124,
+      "selected_pooled_aurc": 0.0008994384927822886,
+      "selected_aurc_delta_vs_confidence": 0.0,
+      "minimum_prediction_class_count": 4,
+      "duration_seconds": 69.67199999999866
+    },
+    {
+      "dataset_id": "hydraulic_uci",
+      "method": "v5_1_safe_dual_path",
+      "seed": 2026,
+      "mean_unseen_macro_f1": 0.9541023862145765,
+      "worst_unseen_macro_f1": 0.9415719696969698,
+      "full_rate_macro_f1": 0.958486776029461,
+      "selected_pooled_aurc": 0.005826171098299833,
+      "selected_aurc_delta_vs_confidence": 0.0,
+      "minimum_prediction_class_count": 4,
+      "duration_seconds": 60.56300000000192
+    },
+    {
+      "dataset_id": "sleep_edfx_physionet",
+      "method": "v5_1_safe_dual_path",
+      "seed": 17,
+      "mean_unseen_macro_f1": 0.6700135135372778,
+      "worst_unseen_macro_f1": 0.5468854002107185,
+      "full_rate_macro_f1": 0.7174127411905207,
+      "selected_pooled_aurc": 0.08329036040856039,
+      "selected_aurc_delta_vs_confidence": 0.0,
+      "minimum_prediction_class_count": 5,
+      "duration_seconds": 1001.5619999999981
+    },
+    {
+      "dataset_id": "sleep_edfx_physionet",
+      "method": "v5_1_safe_dual_path",
+      "seed": 42,
+      "mean_unseen_macro_f1": 0.6662228461787117,
+      "worst_unseen_macro_f1": 0.629388368615374,
+      "full_rate_macro_f1": 0.7005169200319055,
+      "selected_pooled_aurc": 0.08524268699544024,
+      "selected_aurc_delta_vs_confidence": 0.0,
+      "minimum_prediction_class_count": 5,
+      "duration_seconds": 791.344000000001
+    },
+    {
+      "dataset_id": "sleep_edfx_physionet",
+      "method": "v5_1_safe_dual_path",
+      "seed": 2026,
+      "mean_unseen_macro_f1": 0.6948721144787504,
+      "worst_unseen_macro_f1": 0.6358945838935783,
+      "full_rate_macro_f1": 0.7274398326377638,
+      "selected_pooled_aurc": 0.07472404401679084,
+      "selected_aurc_delta_vs_confidence": 0.0,
+      "minimum_prediction_class_count": 5,
+      "duration_seconds": 1831.280999999999
+    },
+    {
+      "dataset_id": "eegmmi_physionet",
+      "method": "v5_1_safe_dual_path",
+      "seed": 17,
+      "mean_unseen_macro_f1": 0.7933469216947094,
+      "worst_unseen_macro_f1": 0.7890786179756675,
+      "full_rate_macro_f1": 0.7877045348293594,
+      "selected_pooled_aurc": 0.07959021610469265,
+      "selected_aurc_delta_vs_confidence": 0.0,
+      "minimum_prediction_class_count": 2,
+      "duration_seconds": 102.15700000000288
+    },
+    {
+      "dataset_id": "eegmmi_physionet",
+      "method": "v5_1_safe_dual_path",
+      "seed": 42,
+      "mean_unseen_macro_f1": 0.7934729389813425,
+      "worst_unseen_macro_f1": 0.7865294915478513,
+      "full_rate_macro_f1": 0.7949647215364952,
+      "selected_pooled_aurc": 0.08600234628931479,
+      "selected_aurc_delta_vs_confidence": 0.0,
+      "minimum_prediction_class_count": 2,
+      "duration_seconds": 115.8279999999977
+    },
+    {
+      "dataset_id": "eegmmi_physionet",
+      "method": "v5_1_safe_dual_path",
+      "seed": 2026,
+      "mean_unseen_macro_f1": 0.8085116918666447,
+      "worst_unseen_macro_f1": 0.8002952788495812,
+      "full_rate_macro_f1": 0.7988340919009913,
+      "selected_pooled_aurc": 0.07753453899776173,
+      "selected_aurc_delta_vs_confidence": 0.0,
+      "minimum_prediction_class_count": 2,
+      "duration_seconds": 140.21899999999732
+    },
+    {
+      "dataset_id": "mitbih_arrhythmia_physionet",
+      "method": "v5_1_safe_dual_path",
+      "seed": 17,
+      "mean_unseen_macro_f1": 0.3288976538037723,
+      "worst_unseen_macro_f1": 0.32559501386602746,
+      "full_rate_macro_f1": 0.33245207953081374,
+      "selected_pooled_aurc": 0.05239393973962511,
+      "selected_aurc_delta_vs_confidence": 0.0,
+      "minimum_prediction_class_count": 5,
+      "duration_seconds": 1561.8290000000015
+    },
+    {
+      "dataset_id": "mitbih_arrhythmia_physionet",
+      "method": "v5_1_safe_dual_path",
+      "seed": 42,
+      "mean_unseen_macro_f1": 0.32440299963716857,
+      "worst_unseen_macro_f1": 0.31927805771482204,
+      "full_rate_macro_f1": 0.32405530422756634,
+      "selected_pooled_aurc": 0.04523850522779094,
+      "selected_aurc_delta_vs_confidence": 0.0,
+      "minimum_prediction_class_count": 3,
+      "duration_seconds": 735.344000000001
+    },
+    {
+      "dataset_id": "mitbih_arrhythmia_physionet",
+      "method": "v5_1_safe_dual_path",
+      "seed": 2026,
+      "mean_unseen_macro_f1": 0.3053763877775868,
+      "worst_unseen_macro_f1": 0.30083910330257563,
+      "full_rate_macro_f1": 0.3111262674416175,
+      "selected_pooled_aurc": 0.04597330473670913,
+      "selected_aurc_delta_vs_confidence": 0.0,
+      "minimum_prediction_class_count": 3,
+      "duration_seconds": 1060.5159999999996
+    }
+  ],
+  "method_summary": {
+    "v3_10": {
+      "mean_unseen_macro_f1": 0.56708546515608,
+      "worst_unseen_macro_f1": 0.47334456268563846,
+      "mean_unseen_balanced_accuracy": 0.6131507727212351,
+      "mean_unseen_aurc": 0.20416393600868768,
+      "mean_unseen_disagreement": 0.09769136241406591,
+      "mean_unseen_jsd": 0.02836854215521668,
+      "full_rate_macro_f1": 0.6332580165091183
+    },
+    "v1_nyquistguard": {
+      "mean_unseen_macro_f1": 0.5163780182182409,
+      "worst_unseen_macro_f1": 0.36238362026443177,
+      "mean_unseen_balanced_accuracy": 0.572551541904488,
+      "mean_unseen_aurc": 0.24264705634766434,
+      "mean_unseen_disagreement": 0.15410980824689025,
+      "mean_unseen_jsd": 0.05147844923906695,
+      "full_rate_macro_f1": 0.6325842452755036
+    },
+    "fixed_rate_tcn": {
+      "mean_unseen_macro_f1": 0.5725192155904943,
+      "worst_unseen_macro_f1": 0.4833972256932645,
+      "mean_unseen_balanced_accuracy": 0.6143018528852131,
+      "mean_unseen_aurc": 0.24763568240961353,
+      "mean_unseen_disagreement": 0.15657847379388634,
+      "mean_unseen_jsd": 0.06227216051330146,
+      "full_rate_macro_f1": 0.6629740611397962
+    },
+    "multirate_tcn": {
+      "mean_unseen_macro_f1": 0.6078368112039279,
+      "worst_unseen_macro_f1": 0.5237110471503986,
+      "mean_unseen_balanced_accuracy": 0.6435544686615657,
+      "mean_unseen_aurc": 0.21839201836162944,
+      "mean_unseen_disagreement": 0.12332612195827104,
+      "mean_unseen_jsd": 0.04268784148679776,
+      "full_rate_macro_f1": 0.6653842054517628
+    },
+    "minirocket": {
+      "mean_unseen_macro_f1": 0.7147839492301055,
+      "worst_unseen_macro_f1": 0.6298426138714588,
+      "mean_unseen_balanced_accuracy": 0.7383061785461447,
+      "mean_unseen_aurc": 0.16857205862111596,
+      "mean_unseen_disagreement": 0.10646003597898854,
+      "mean_unseen_jsd": 0.07379247377817195,
+      "full_rate_macro_f1": 0.7696372564492274
+    },
+    "multirocket": {
+      "mean_unseen_macro_f1": 0.6191118772859673,
+      "worst_unseen_macro_f1": 0.45184824975266186,
+      "mean_unseen_balanced_accuracy": 0.6464475637166953,
+      "mean_unseen_aurc": 0.2894556922032235,
+      "mean_unseen_disagreement": 0.26742414802080483,
+      "mean_unseen_jsd": 0.18536429420679498,
+      "full_rate_macro_f1": 0.7887071078650897
+    },
+    "v3_10_no_nyquist_gate": {
+      "mean_unseen_macro_f1": 0.6041777456419558,
+      "worst_unseen_macro_f1": 0.5341768076873143,
+      "mean_unseen_balanced_accuracy": 0.6499905976228233,
+      "mean_unseen_aurc": 0.1800472925687552,
+      "mean_unseen_disagreement": 0.11480831146221343,
+      "mean_unseen_jsd": 0.037368449987009764,
+      "full_rate_macro_f1": 0.6382096954430876
+    },
+    "v5_1_safe_dual_path": {
+      "mean_unseen_macro_f1": 0.7584043131358073,
+      "worst_unseen_macro_f1": 0.7257559172242196,
+      "full_rate_macro_f1": 0.7691061773656965
+    }
+  },
+  "paired_statistics": {
+    "v3_10": {
+      "mean_delta": 0.19131884797972726,
+      "median_delta": 0.1557740134853943,
+      "dataset_deltas": {
+        "basicmotions_uea": 0.34010810587253476,
+        "epilepsy_uea": 0.20827738257912243,
+        "pamap2_uci": -0.29877070103941145,
+        "mhealth_uci": 0.22848193049643314,
+        "hapt_uci": 0.0982745417255108,
+        "daily_sports_uci": 0.10327064439166618,
+        "hydraulic_uci": 0.8550019767931211,
+        "sleep_edfx_physionet": -0.011989921513856508,
+        "eegmmi_physionet": 0.382137944221098,
+        "mitbih_arrhythmia_physionet": 0.008396576271054093
+      },
+      "dataset_clustered_bootstrap_95_ci": [
+        0.02284582532642592,
+        0.3818050425141866
+      ],
+      "wilcoxon_p": 0.064453125,
+      "positive_dataset_count": 8,
+      "dataset_count": 10,
+      "holm_adjusted_p": 0.2578125
+    },
+    "v1_nyquistguard": {
+      "mean_delta": 0.24202629491756658,
+      "median_delta": 0.2282093298972846,
+      "dataset_deltas": {
+        "basicmotions_uea": 0.3864744017582798,
+        "epilepsy_uea": 0.24744890699213004,
+        "pamap2_uci": -0.20861696681987965,
+        "mhealth_uci": 0.260708548846152,
+        "hapt_uci": 0.11443220746502188,
+        "daily_sports_uci": 0.20896975280243912,
+        "hydraulic_uci": 0.8466210367125576,
+        "sleep_edfx_physionet": 0.1527349253115434,
+        "eegmmi_physionet": 0.4075432096874145,
+        "mitbih_arrhythmia_physionet": 0.003946926420006991
+      },
+      "dataset_clustered_bootstrap_95_ci": [
+        0.0866883861532342,
+        0.41386115468136697
+      ],
+      "wilcoxon_p": 0.013671875,
+      "positive_dataset_count": 9,
+      "dataset_count": 10,
+      "holm_adjusted_p": 0.08203125
+    },
+    "fixed_rate_tcn": {
+      "mean_delta": 0.18588509754531307,
+      "median_delta": 0.07131911711201377,
+      "dataset_deltas": {
+        "basicmotions_uea": 0.39998651113763795,
+        "epilepsy_uea": -0.027616584801450423,
+        "pamap2_uci": 0.04025471669554929,
+        "mhealth_uci": 0.0589085898230837,
+        "hapt_uci": 0.06553343980096797,
+        "daily_sports_uci": 0.06946533712471359,
+        "hydraulic_uci": 0.8803491361138714,
+        "sleep_edfx_physionet": 0.21224863460212853,
+        "eegmmi_physionet": 0.08654829785731495,
+        "mitbih_arrhythmia_physionet": 0.07317289709931396
+      },
+      "dataset_clustered_bootstrap_95_ci": [
+        0.057620220026970224,
+        0.3668620060125974
+      ],
+      "wilcoxon_p": 0.00390625,
+      "positive_dataset_count": 9,
+      "dataset_count": 10,
+      "holm_adjusted_p": 0.02734375
+    },
+    "multirate_tcn": {
+      "mean_delta": 0.15056750193187948,
+      "median_delta": 0.04871297089189955,
+      "dataset_deltas": {
+        "basicmotions_uea": 0.3731873000034036,
+        "epilepsy_uea": -0.08562944856912502,
+        "pamap2_uci": 0.041444319697855746,
+        "mhealth_uci": -6.26247652409558e-05,
+        "hapt_uci": 0.02048378720430677,
+        "daily_sports_uci": 0.07118741382090932,
+        "hydraulic_uci": 0.8822666098087156,
+        "sleep_edfx_physionet": 0.11153975339888363,
+        "eegmmi_physionet": 0.03527628663314294,
+        "mitbih_arrhythmia_physionet": 0.05598162208594335
+      },
+      "dataset_clustered_bootstrap_95_ci": [
+        0.016747022408001456,
+        0.3362461030968998
+      ],
+      "wilcoxon_p": 0.048828125,
+      "positive_dataset_count": 8,
+      "dataset_count": 10,
+      "holm_adjusted_p": 0.244140625
+    },
+    "minirocket": {
+      "mean_delta": 0.043620363905701856,
+      "median_delta": -0.028920131574632812,
+      "dataset_deltas": {
+        "basicmotions_uea": 0.06201150407728743,
+        "epilepsy_uea": -0.06986911232692868,
+        "pamap2_uci": -0.22567314970127206,
+        "mhealth_uci": -0.019640428749094663,
+        "hapt_uci": -0.04734368830460589,
+        "daily_sports_uci": -0.039368010207667635,
+        "hydraulic_uci": 0.686363647611756,
+        "sleep_edfx_physionet": 0.08715557691393572,
+        "eegmmi_physionet": 0.04076713414377938,
+        "mitbih_arrhythmia_physionet": -0.03819983440017096
+      },
+      "dataset_clustered_bootstrap_95_ci": [
+        -0.06761975029973888,
+        0.20568221716698143
+      ],
+      "wilcoxon_p": 1.0,
+      "positive_dataset_count": 4,
+      "dataset_count": 10,
+      "holm_adjusted_p": 1.0
+    },
+    "multirocket": {
+      "mean_delta": 0.1392924358498401,
+      "median_delta": 0.09873768447928924,
+      "dataset_deltas": {
+        "basicmotions_uea": 0.25183246334562126,
+        "epilepsy_uea": 0.10882335476762132,
+        "pamap2_uci": -0.2613284728895371,
+        "mhealth_uci": 0.2342841329452839,
+        "hapt_uci": 0.006235412269699925,
+        "daily_sports_uci": -0.014600990564972402,
+        "hydraulic_uci": 0.7413503583568312,
+        "sleep_edfx_physionet": 0.28985547905463593,
+        "eegmmi_physionet": 0.08865201419095714,
+        "mitbih_arrhythmia_physionet": -0.05217939297774038
+      },
+      "dataset_clustered_bootstrap_95_ci": [
+        -0.004014117873560704,
+        0.3007482074626038
+      ],
+      "wilcoxon_p": 0.16015625,
+      "positive_dataset_count": 7,
+      "dataset_count": 10,
+      "holm_adjusted_p": 0.3203125
+    },
+    "v3_10_no_nyquist_gate": {
+      "mean_delta": 0.1542265674938515,
+      "median_delta": 0.11787370488205329,
+      "dataset_deltas": {
+        "basicmotions_uea": 0.27247387623678293,
+        "epilepsy_uea": 0.15257044528888278,
+        "pamap2_uci": -0.3087339456802672,
+        "mhealth_uci": 0.15594455301254861,
+        "hapt_uci": 0.03896372905974984,
+        "daily_sports_uci": 0.08317696447522378,
+        "hydraulic_uci": 0.8039950748920527,
+        "sleep_edfx_physionet": -0.027802314291106467,
+        "eegmmi_physionet": 0.36338065173731504,
+        "mitbih_arrhythmia_physionet": 0.008296640207333098
+      },
+      "dataset_clustered_bootstrap_95_ci": [
+        -0.004908713498121138,
+        0.3339158413877289
+      ],
+      "wilcoxon_p": 0.083984375,
+      "positive_dataset_count": 8,
+      "dataset_count": 10,
+      "holm_adjusted_p": 0.2578125
+    }
+  },
+  "reliability_modes": {
+    "status": "frozen_from_validation_before_extension_test_evaluation",
+    "protocol_hash": "5e9436916b681315233406d8e8412f7078ab1784f77910798098a4f82e5df1ad",
+    "modes": {
+      "basicmotions_uea": {
+        "mode": "confidence_fallback",
+        "validation_gains": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "minimum_validation_gain": 0.0,
+        "mean_validation_gain": 0.0,
+        "positive_seed_fraction": 0.0
+      },
+      "epilepsy_uea": {
+        "mode": "observability",
+        "validation_gains": [
+          0.005550323078597805,
+          0.020075749372232693,
+          0.0119390650901844
+        ],
+        "minimum_validation_gain": 0.005550323078597805,
+        "mean_validation_gain": 0.012521712513671632,
+        "positive_seed_fraction": 1.0
+      },
+      "pamap2_uci": {
+        "mode": "confidence_fallback",
+        "validation_gains": [
+          -0.052988512985866154,
+          -0.04393622156005959,
+          -0.05853052017622162
+        ],
+        "minimum_validation_gain": -0.05853052017622162,
+        "mean_validation_gain": -0.05181841824071579,
+        "positive_seed_fraction": 0.0
+      },
+      "mhealth_uci": {
+        "mode": "confidence_fallback",
+        "validation_gains": [
+          -0.0369963287232387,
+          -0.04271421613709081,
+          -0.042271132840957376
+        ],
+        "minimum_validation_gain": -0.04271421613709081,
+        "mean_validation_gain": -0.04066055923376229,
+        "positive_seed_fraction": 0.0
+      },
+      "hapt_uci": {
+        "mode": "confidence_fallback",
+        "validation_gains": [
+          -0.022435429555543993,
+          -0.02235288432910423,
+          -0.01976582449573645
+        ],
+        "minimum_validation_gain": -0.022435429555543993,
+        "mean_validation_gain": -0.021518046126794893,
+        "positive_seed_fraction": 0.0
+      },
+      "daily_sports_uci": {
+        "mode": "confidence_fallback",
+        "validation_gains": [
+          -0.043519804245631837,
+          -0.03473472761879563,
+          -0.02122286086589714
+        ],
+        "minimum_validation_gain": -0.043519804245631837,
+        "mean_validation_gain": -0.0331591309101082,
+        "positive_seed_fraction": 0.0
+      },
+      "hydraulic_uci": {
+        "mode": "confidence_fallback",
+        "validation_gains": [
+          -0.0010864689452765482,
+          -0.012412897779097673,
+          -0.010473250428878794
+        ],
+        "minimum_validation_gain": -0.012412897779097673,
+        "mean_validation_gain": -0.007990872384417673,
+        "positive_seed_fraction": 0.0
+      },
+      "sleep_edfx_physionet": {
+        "mode": "confidence_fallback",
+        "validation_gains": [
+          -0.029228826005654365,
+          -0.0378302926541327,
+          -0.04017436947521808
+        ],
+        "minimum_validation_gain": -0.04017436947521808,
+        "mean_validation_gain": -0.03574449604500171,
+        "positive_seed_fraction": 0.0
+      },
+      "eegmmi_physionet": {
+        "mode": "confidence_fallback",
+        "validation_gains": [
+          -0.052746840332476896,
+          -0.05769331673540766,
+          -0.05837137411778075
+        ],
+        "minimum_validation_gain": -0.05837137411778075,
+        "mean_validation_gain": -0.05627051039522177,
+        "positive_seed_fraction": 0.0
+      },
+      "mitbih_arrhythmia_physionet": {
+        "mode": "confidence_fallback",
+        "validation_gains": [
+          -0.025454077560956898,
+          -0.02977974461479351,
+          -0.024732930472096237
+        ],
+        "minimum_validation_gain": -0.02977974461479351,
+        "mean_validation_gain": -0.02665558421594888,
+        "positive_seed_fraction": 0.0
+      }
+    },
+    "source_hashes": {
+      "basicmotions_uea__seed17\\validation_metrics.json": "e9518feafc8e59227ebbe6ff0c5f3dfab23f8e8fa14432b5d8d096cece141d4b",
+      "basicmotions_uea__seed2026\\validation_metrics.json": "0e474147587fab167cfa8f5c1c2bd574fd280108ab5693153bda6683f1af3372",
+      "basicmotions_uea__seed42\\validation_metrics.json": "a433988c6fd804f275f4ddadc05e187d30e9d671819e4b3f80d721cb7425ecaa",
+      "daily_sports_uci__seed17\\validation_metrics.json": "a619a6a11a865b0201ec16db31638cf1539893a11ab2bffe1f1ae065bbce330d",
+      "daily_sports_uci__seed2026\\validation_metrics.json": "605ee9cb1bb5c1a33b5eaa986e72d62ccc0201d20b29a77235fadcc28b4389aa",
+      "daily_sports_uci__seed42\\validation_metrics.json": "b8817b300219391ee0e5e18beda12e37585c750bfdc404b32ca53ca84fa98fb7",
+      "eegmmi_physionet__seed17\\validation_metrics.json": "793ce980a932e795b29beefaba6ff548b0a5441c943883f98a67aaf76e843f75",
+      "eegmmi_physionet__seed2026\\validation_metrics.json": "87457cca7f1fe41444934f68a9c01cb820e14c4e0e61760837c154bb562d0c9c",
+      "eegmmi_physionet__seed42\\validation_metrics.json": "5ff19f471bfe354c10f13b4447c1c3abd81d9b6840be18b6737c95dd9091aac7",
+      "epilepsy_uea__seed17\\validation_metrics.json": "388b4faf2037f8b5dc9cae35288c199d15dc2c3b7f4dd6422c83580c6f839f83",
+      "epilepsy_uea__seed2026\\validation_metrics.json": "4c25183ea6c67ef0926cdffdc19c83ab1151d1266d66297f8e25a37b3da9d830",
+      "epilepsy_uea__seed42\\validation_metrics.json": "417ec6df94744f515fc8ace4d4167a10ffbb63bd52fbfc04c78f5e163d9f5926",
+      "hapt_uci__seed17\\validation_metrics.json": "f6169e4d99d0665edbe9383840ad6ec7733416be823121227284295b3f02e573",
+      "hapt_uci__seed2026\\validation_metrics.json": "73c4d3ef158c9a40ab5ac453d2ab12d46eda3d0e3221f87c936a3ee30f44d89c",
+      "hapt_uci__seed42\\validation_metrics.json": "b70f06d9cfcd0a67458137e9d8a70813d98310d981da71f69c6147239dc1bbf3",
+      "hydraulic_uci__seed17\\validation_metrics.json": "19ba9af4262109ecf5b06449191c1178b55871c46402ea0ab37ac260e2b46545",
+      "hydraulic_uci__seed2026\\validation_metrics.json": "98056e5fc6810f5a855f4fad5829183019ea0d3e269cf67e9308d32d3b9c8780",
+      "hydraulic_uci__seed42\\validation_metrics.json": "ce6ee4ba9576b4ff72db168c4cfa238d78002777761da2260a828b5f4dbcc2de",
+      "mhealth_uci__seed17\\validation_metrics.json": "1868702619d5a9cbf4f1eff0ffba7074c234f528a6b0eac47b758f89d59c3b4e",
+      "mhealth_uci__seed2026\\validation_metrics.json": "ba0892d7ea02b6d3e0ec011ee2b706c5fe719398c071746622d2bed13ad3b017",
+      "mhealth_uci__seed42\\validation_metrics.json": "2dd79b91b89f92a3b646c78bb3aa8d4f1f024ead288d0b0137a31d2fa0c86028",
+      "mitbih_arrhythmia_physionet__seed17\\validation_metrics.json": "cb1a9ead8926b84fb1726a091663346b217cfb1d89580e00bc98aabbf5dd6cca",
+      "mitbih_arrhythmia_physionet__seed2026\\validation_metrics.json": "ad1f434cc2ba7646117d7e2cca896570ff09611ad71ca6abd4d56ea042f9560b",
+      "mitbih_arrhythmia_physionet__seed42\\validation_metrics.json": "9ed63142eaaf59ebefcc0af907a1f594d7b7e0063cbc86a628b34fc02f56cc8b",
+      "pamap2_uci__seed17\\validation_metrics.json": "afec835f7d6a911585f58df982a064655fd4ad78709ee51049e8192f2845604e",
+      "pamap2_uci__seed2026\\validation_metrics.json": "c2690db4150e600536d850f4652ca86df44621da6ae94818f3f305b841088fa2",
+      "pamap2_uci__seed42\\validation_metrics.json": "5ef6a04c2a68d2b4e5de90838ffe93514a92713a18eb0d09dc45b9049b251d64",
+      "sleep_edfx_physionet__seed17\\validation_metrics.json": "b9d0ec31a897c6de166ad580b3b105a719fe245e30a055ba60fa38ff0d48b387",
+      "sleep_edfx_physionet__seed2026\\validation_metrics.json": "c0225c31f8b70864f7c607d53e01de504a58dc6bdc080866ec0c622861927d3d",
+      "sleep_edfx_physionet__seed42\\validation_metrics.json": "6a616593a62d9f02fb21068ba0467e16db9e5e8dafb10e4a7aa63fbeb2e82701",
+      "basicmotions_uea__seed17\\checkpoint_best.pt": "bc72b49054c0a05104fb432fcea40073fa14123f42bd292ff43db22e22bc0e00",
+      "basicmotions_uea__seed2026\\checkpoint_best.pt": "5bcd2839e960d4c2d41633b6b44d10f3f034707575f5fa449b0219e3e09d37ad",
+      "basicmotions_uea__seed42\\checkpoint_best.pt": "10f08980af913e32dbfd031d31e52f92d682c6984de0fbb442a7602ab46748b6",
+      "daily_sports_uci__seed17\\checkpoint_best.pt": "bfb5c68ee446cad44d9aa35cd33a3bc17335d656648d0a132b380dd2585edc0d",
+      "daily_sports_uci__seed2026\\checkpoint_best.pt": "fbea7511e4b41e7d544316f132becca4f87c23ac16790ccb4011608bedd950b7",
+      "daily_sports_uci__seed42\\checkpoint_best.pt": "ffa24a5474d1cc0fcfa7fd832d3c7eb70a67be0a7505685f2520cf4504e70fb5",
+      "eegmmi_physionet__seed17\\checkpoint_best.pt": "c176ce3c7d5d086b42dbe024932f91279116aaf76040fe10d7069dc74068a938",
+      "eegmmi_physionet__seed2026\\checkpoint_best.pt": "5672cce25e05bffefce37b2ae41181211a81636abef1e238343f44e83e277f94",
+      "eegmmi_physionet__seed42\\checkpoint_best.pt": "abe788b4351c99a247e04c86ab33351276d5befb211a04416be42d4de5b6f2b0",
+      "epilepsy_uea__seed17\\checkpoint_best.pt": "39433dc8351020d6c3ed18cbcd4d1babace9ecf467bbaf0282b58fc7e1390331",
+      "epilepsy_uea__seed2026\\checkpoint_best.pt": "3f0bdf95a2640c1b18fdd6216fb680a0e8ceb60f304409dc0b9b8771304f96b8",
+      "epilepsy_uea__seed42\\checkpoint_best.pt": "8cf01a0d5fed4b080e37849d23e888361294ecf55be82c6d04d00d77608af06e",
+      "hapt_uci__seed17\\checkpoint_best.pt": "2c23fd347fc60964f9ffaf56c052fa728c8cedce865eb450bbfafca647f64455",
+      "hapt_uci__seed2026\\checkpoint_best.pt": "b913e8b08d1ec1a2a062b4e69edb86f14982a0f7bd0c1f4b64e9028694031024",
+      "hapt_uci__seed42\\checkpoint_best.pt": "aff6539ae38d27d792a19e7966ce6302a49e6119bf514e6c9465741f7b777c2b",
+      "hydraulic_uci__seed17\\checkpoint_best.pt": "d08f6f2602e73dfae2a6864f086401ea08f212ce95a674b1671b6ebe4f01632e",
+      "hydraulic_uci__seed2026\\checkpoint_best.pt": "87ce6974d908e6878bb6c4ebe1a6d3051d5a3ee6859b0430f006f9d1525c2239",
+      "hydraulic_uci__seed42\\checkpoint_best.pt": "92a3241c6a270d5cdfcdd32695242a5b604378e301de909e5b24dc4906b8fd10",
+      "mhealth_uci__seed17\\checkpoint_best.pt": "085950227aa74db29e78863eebbdd62433a50216f649fdb0ff03e2f154e53cac",
+      "mhealth_uci__seed2026\\checkpoint_best.pt": "0058c6d2b7d223cf7a13a3ff38a42727cc5ef8ea715ac3271ef46dba69e06a92",
+      "mhealth_uci__seed42\\checkpoint_best.pt": "4bcf86ee30bd807201038e8433c633db266d93774bb8fa95d79c03c789f82769",
+      "mitbih_arrhythmia_physionet__seed17\\checkpoint_best.pt": "470e6e6fc6604edd0a9bf1e5cdc4717cfc6da5018a3f72e46ee959dcf2d400e0",
+      "mitbih_arrhythmia_physionet__seed2026\\checkpoint_best.pt": "ca58b631c94b12666f59996d9d29a7f5d5eeca80821e99baa191dc8fdea0cb28",
+      "mitbih_arrhythmia_physionet__seed42\\checkpoint_best.pt": "8b4480bf4407fedfc60e4e72bb0af53ddcca1c8d45fc9f3988906ce25d2a82df",
+      "pamap2_uci__seed17\\checkpoint_best.pt": "2748b1860f6de20c36eaf5cd1a8860d3241bba94c207f3bf3d488c0aca286dde",
+      "pamap2_uci__seed2026\\checkpoint_best.pt": "e47ff5ceacf50cc7f260c69ffac6dec00e877c09d0588e38042629389c1cedf0",
+      "pamap2_uci__seed42\\checkpoint_best.pt": "3def3f2425eb2a4981115da1a15e599f97f2e765c1454cb773aa18a8bb3ce3dc",
+      "sleep_edfx_physionet__seed17\\checkpoint_best.pt": "d59b0f118fe45e9f0c0c14bbf58e751fea7d3dfd65e55edc4b031fc2bd5f10c9",
+      "sleep_edfx_physionet__seed2026\\checkpoint_best.pt": "1bb7e5ab18fdbfd913c5f3b4e0c15736f500e8f54ae834f16043ed7ab43bb560",
+      "sleep_edfx_physionet__seed42\\checkpoint_best.pt": "3fbb0401ab068d78da2f204a2f1d9db7d8facb63bb42145f5a48c5fd6ffe3725"
+    },
+    "frozen_at_utc": "2026-08-28T13:01:42Z"
+  },
+  "decision": {
+    "passed": false,
+    "checks": {
+      "average_unseen_gain_vs_v3_10": true,
+      "positive_dataset_count_vs_v3_10": true,
+      "single_dataset_unseen_floor_vs_v3_10": false,
+      "reliability_nonworse": false,
+      "no_constant_prediction": true,
+      "finite_metrics": true
+    },
+    "comparison_method": "v3_10",
+    "mean_unseen_macro_f1_delta": 0.19131884797972726,
+    "positive_dataset_count": 8,
+    "minimum_dataset_delta": -0.29877070103941145,
+    "mean_selected_aurc_delta_vs_confidence": 0.0017353387170821392
+  },
+  "elapsed_seconds": 10382.172000000002,
+  "device": "cuda",
+  "run_root": "runs\\v5_1_full_extension\\v5_1_full_extension__10datasets__3seeds__20260828T101521Z",
+  "later_stage_started": false,
+  "finished_at_utc": "2026-08-28T13:08:23Z"
+}

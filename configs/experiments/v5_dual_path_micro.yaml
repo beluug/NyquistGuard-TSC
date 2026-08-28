@@ -1,0 +1,50 @@
+stage: v5_dual_path_micro
+protocol_version: v5_dual_path_validation_micro_v1
+development_only: true
+manual_start_required: true
+automatic_later_stage_allowed: false
+independent_confirmation_claim_allowed: false
+
+data_boundary:
+  allowed: [basicmotions_uea_train_validation, pamap2_uci_train_validation]
+  forbidden: [all_test_splits, v4_confirmation_test_metrics, v4_confirmation_test_predictions]
+  v4_confirmation_datasets_eligible_for_v5_confirmation: false
+
+design:
+  datasets: [basicmotions_uea, pamap2_uci]
+  seed: 17
+  roles: [v4_1_residual_gate, v5_dual_path]
+  run_order:
+    - [basicmotions_uea, 17, v4_1_residual_gate]
+    - [basicmotions_uea, 17, v5_dual_path]
+    - [pamap2_uci, 17, v4_1_residual_gate]
+    - [pamap2_uci, 17, v5_dual_path]
+  base_config: configs/experiments/pilot.yaml
+  epochs: 30
+  early_stopping_patience: 10
+  wall_time_budget_seconds: 600
+  initial_gate_floor: 0.5
+  spatial_channels: 24
+  train_rate_schedule:
+    mode: identity_plus_continuous_uniform
+    period_batches: 3
+    identity_slots: 1
+    uniform_min: 0.3
+    uniform_max: 0.75
+  validation_rate_ratios: [1.0, 0.9, 0.6, 0.4, 0.3]
+  checkpoint_selection:
+    metric: balanced_full_unseen_macro_f1
+    full_rate_weight: 0.5
+    mean_unseen_rate_weight: 0.5
+  reliability_controller:
+    candidate: confidence_times_relative_analytic_gate_mass
+    fallback: max_softmax_confidence
+    activation_rule: candidate_pooled_validation_aurc_not_greater_than_fallback
+
+development_gates:
+  minimum_average_unseen_macro_f1_delta_vs_v4_1: 0.01
+  maximum_single_dataset_unseen_macro_f1_drop: 0.01
+  maximum_average_full_rate_macro_f1_drop: 0.01
+  require_no_constant_prediction_at_any_validation_rate: true
+  require_selected_reliability_nonworse_than_confidence: true
+  require_finite_metrics_and_gate_floors: true
