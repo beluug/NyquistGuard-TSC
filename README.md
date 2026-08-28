@@ -59,5 +59,5 @@ code in this package is released under the MIT License. Dataset licences remain
 separate and are not relicensed by this repository.
 
 Public repository: https://github.com/beluug/NyquistGuard-TSC  
-Current release commit: `6a10c7dc59f2e0424ee4cec82378a016e1cdcaed`  
+Release tag: `v1.0.0`  
 Zenodo DOI: not yet available; add it here and in `CITATION.cff` after archival.
